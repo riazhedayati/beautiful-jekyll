@@ -1,16 +1,14 @@
 ---
 layout: page
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: About
+subtitle:
+permalink:
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+I'm currently working as a Systems Engineer at SAS. I help mid-size banks and credit unions understand how SAS software can help them better understand their data and leverage it to make smarter business decisions.
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+Before SAS, I worked at LSU's Public Policy Research Group, where I built predictive models for various state agencies. I also worked at a boutique market research firm called BrandIQ in Los Angeles, where I helped create market research surveys, analyzed the results, and presented the findings, primarily to food and restaurant clients. I also spent a year teaching english in Talavera de la Reina, Spain.
 
-What else do you need?
+I have Masters in Analytics from North Carolina State's [Institute for Advanced Analytics](http://analytics.ncsu.edu), and a bachelors in Economics from the [University of Arizona](http://www.arizona.edu).
 
-### my history
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+If you'd like to get in contact with me, please email me or message me on Linkedin. Thanks!
