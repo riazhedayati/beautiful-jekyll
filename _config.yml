@@ -17,15 +17,14 @@ baseurl: ""
 title: Riaz Hedayati
 
 # Short description of your site
-#description: "Personal Website"
+description: "Personal Website"
 
 # --- Navigation bar options --- #
 
 # List of links in the navigation bar
 navbar-links:
-  Home: ""
-  Projects: "projects"
-  About Me: "aboutme"
+  Projects: ""
+  About: "about"
 # Contact: "contact"
   
 #  Resources:
@@ -35,7 +34,7 @@ navbar-links:
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
-# avatar: "/img/avatar-icon.png"
+  avatar: "/img/riazhedayati.jpg"
 
 # If you want to have an image logo in the top-left corner instead of the title text,
 # then specify the following parameter
