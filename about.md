@@ -2,7 +2,7 @@
 layout: page
 title: About
 subtitle:
-permalink:
+permalink: /about/
 ---
 
 I'm currently working as a Systems Engineer at SAS. I help mid-size banks and credit unions understand how SAS software can help them better understand their data and leverage it to make smarter business decisions.
