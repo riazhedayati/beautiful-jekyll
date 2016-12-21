@@ -17,7 +17,7 @@ baseurl: ""
 title: Riaz Hedayati
 
 # Short description of your site
-description: "Personal Website"
+#description: "Personal Website"
 
 # --- Navigation bar options --- #
 
@@ -103,7 +103,7 @@ url-pretty: "riazhedayati.github.io"  # eg. "deanattali.com/beautiful-jekyll"
 
 # Excerpt Word Length
 # Truncates the excerpt to the specified number of words on the index page
-#excerpt_length: 50
+excerpt_length: 0
 
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
@@ -132,7 +132,7 @@ defaults:
     scope:
       path: "" # all files
     values:
-      layout: "defaults"  #replaced "page"
+      layout: "page" 
       show-avatar: true
 
 # Use tags pages (not recommended if you are deploying via GitHub pages, only set to true if deploying locally with ruby)
