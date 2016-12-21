@@ -17,7 +17,7 @@ baseurl: ""
 title: Riaz Hedayati
 
 # Short description of your site
-description:
+description: "Personal Website"
 
 # --- Navigation bar options --- #
 
@@ -26,7 +26,7 @@ navbar-links:
   Home: ""
   Projects: "projects"
   About Me: "aboutme"
-  Contact: "contact"
+# Contact: "contact"
   
 #  Resources:
 #    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
@@ -103,7 +103,7 @@ url-pretty: "riazhedayati.github.io"  # eg. "deanattali.com/beautiful-jekyll"
 
 # Excerpt Word Length
 # Truncates the excerpt to the specified number of words on the index page
-excerpt_length: 50
+#excerpt_length: 50
 
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
@@ -111,8 +111,9 @@ excerpt_length: 50
 timezone: "America/New_York"
 markdown: kramdown
 highlighter: rouge
-permalink: /:year-:month-:day-:title/
-paginate: 5
+permalink: /blog/:title/
+paginate: 20
+paginate_path: "/page:num/"
 
 kramdown:
   input: GFM
@@ -125,13 +126,13 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      comments: true  # add comments to all blog posts
+      comments: false  # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
   -
     scope:
       path: "" # all files
     values:
-      layout: "page"
+      layout: "defaults"  #replaced "page"
       show-avatar: true
 
 # Use tags pages (not recommended if you are deploying via GitHub pages, only set to true if deploying locally with ruby)
