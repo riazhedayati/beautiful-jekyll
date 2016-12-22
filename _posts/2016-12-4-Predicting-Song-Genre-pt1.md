@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Predicting Genre using Song Lyrics (part 1)
+subtitle: Data collection using Python
+css: 
 ---
 
 I’ve always loved music. In order to learn more about text mining, I thought it would be interesting to see if you could predict a song’s genre from its lyrics.
