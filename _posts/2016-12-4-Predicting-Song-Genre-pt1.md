@@ -2,24 +2,23 @@
 layout: post
 title: Predicting Song Genre using Lyrics (part 1)
 subtitle: Data collection using Python
-css: "/css/index.css"
+css: 
 permalink: 
 ---
 
 I’ve always loved music. In order to learn more about text mining, I thought it would be interesting to see if you could predict a song’s genre from its lyrics.
 
-## Defining our Target
-If we’re going to try to predict a song’s genre using its lyrics, one big issue to think about first is the subjective nature of our target variable, _genre_. For example, is Taylor Swift a pop artist, or a country singer? Similarly, are alternative and heavy metal separate genres, or can you just classify both as just ‘Rock’?  Classifying a song within a genre is a subjective exercise.
+### Defining our target
+If we’re going to try to predict a song’s genre using its lyrics, one big issue to think about first is the subjective nature of our target variable, _genre_. For example, is Taylor Swift a pop artist, or a country singer? Similarly, are alternative and heavy metal separate genres, or can you just classify both as just _Rock_?  Classifying a song within a genre is a subjective exercise.
  
 Luckily, I was able to avoid listening to hundreds of songs and making my own subjective assessments on genre, thanks to a website called [Songlyrics](http://www.songlyrics.com/news/top-genres/country-music). Songlyrics.com provided lyrics for the top 100 songs in 6 different genres: Christian, Country, Rap, Pop, R&B, and Rock. While there was no information from Songlyrics on how they made their decisions (How did they determine genre? Top 100 songs by what metric?) the songs passed the sniff test: Hank Williams was in the Country genre, and Guns N’Roses were in the Rock genre.
 
-## Gathering the data
+### Gathering the data
 Now that we have a data source, we need to actually capture that data. There were 100 songs in 6 different genres, so our dataset will have 600 rows, where each row is a song. To begin, our dataset will have 3 columns: songinfo (including artist name and song title), lyrics, and genre.
 
 To create our dataset, I wrote a small python program using the [beautiful soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) library to scrape the songinfo, lyrics, and genre for each of the 600 songs. Beautiful Soup is a handy library that will allow you to easily parse HTML tags on websites, allowing you to more easily capture the information you want.
  
 First, I imported the relevant libraries and created 3 empty vectors, one for each column of desired data to be stored. I also created a list containing 6 urls, one for each of the genres. There were also three song urls which did not contain content at the time and kept breaking my loop, so they are noted here for omission later.
-
 
  ```python
 from bs4 import BeautifulSoup
@@ -30,7 +29,9 @@ import csv
 lyricsvector = []
 genrevector = []
 songinfovector = []  #artist and songname
- 
+```
+
+ ```python
 # List the URLs here
 urllist = [
 "http://www.songlyrics.com/news/top-genres/christian/",
