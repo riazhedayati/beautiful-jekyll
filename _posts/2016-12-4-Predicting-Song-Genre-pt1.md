@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Predicting Song Genre using Lyrics (part 1)
 subtitle: Data collection using Python
 css: 
