@@ -20,7 +20,7 @@ To create our dataset, I wrote a small python program using the [beautiful soup]
  
 First, I imported the relevant libraries and created 3 empty vectors, one for each column of desired data to be stored. I also created a list containing 6 urls, one for each of the genres. There were also three song urls which did not contain content at the time and kept breaking my loop, so they are noted here for omission later.
 
- ```python
+```python
 from bs4 import BeautifulSoup
 import urllib2
 import numpy
@@ -29,9 +29,7 @@ import csv
 lyricsvector = []
 genrevector = []
 songinfovector = []  #artist and songname
-```
 
- ```python
 # List the URLs here
 urllist = [
 "http://www.songlyrics.com/news/top-genres/christian/",
