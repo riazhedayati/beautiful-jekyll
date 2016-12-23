@@ -6,7 +6,7 @@ permalink: /about/
 ---
 
 
-<center><img src="/img/riazhedayati.jpg" alt="Riaz Hedayati" style="border-radius: 50%; width: 30%; height: 30%"></center>
+<center><img src="/img/riazhedayati.jpg" alt="Riaz Hedayati" style="border-radius: 50%; width: 50%; height: 50%"></center>
 Hi, I'm Riaz. I love using data to try and predict things.
 
 I'm currently a Systems Engineer at [SAS](http://www.sas.com/en_us/home.html). I help financial institutions figure out how they can better understand their data and leverage it to make smarter decisions.
