@@ -1,10 +1,10 @@
 ---
 layout: post
-title: test post
+title: Predicting Song Genre using Lyrics (part 1)
 subtitle: Data collection using Python
 ---
 
-I’ve always loved music. In order to learn more about text mining, I thought it would be interesting to see if it was possible to predict a song’s genre from its lyrics.
+I’ve always loved music. In order to learn more about text mining, I thought it would be interesting to see if it was possible to predict a song’s genre using its lyrics.
 
 ### Defining our target
 If we’re going to try to predict a song’s genre using its lyrics, one big issue to think about first is the subjective nature of our target variable, _genre_. For example, is Taylor Swift a pop artist, or a country singer? Similarly, are _Alternative_ and _Heavy Metal_ separate genres, or can you just classify both as just _Rock_?  Classifying a song within a genre is a subjective exercise.
