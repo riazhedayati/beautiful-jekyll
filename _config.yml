@@ -116,6 +116,11 @@ paginate_path: "/page:num/"
 
 kramdown:
   input: GFM
+  span:
+    line_numbers: false
+  block:
+    line_numbers: true
+    start_line: 1
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
