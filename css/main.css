@@ -17,9 +17,19 @@ p a {
   /* text-decoration: underline */
   color: #008AFF;
 }
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6 { 
+/* use this to change the font of the largest 2 headers
+h1,h2 {
+  font-family: 'Existence-StencilLight', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  color: rgb(0, 180, 161);
+}
+
+h3,h4,h5,h6 { 
+*/
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 800;
+  font-weight: 800; /*change weight to 500 if desired */
+  /* color: #xxxxxx; change this to change text color */
 }
 a {
   color: #008AFF;
@@ -97,7 +107,7 @@ img {
 /* --- Navbar --- */
 
 .navbar-custom {
-  background: #F5F5F5;
+  background: #F5F5F5; /* change navbar color */
   border-bottom: 1px solid #EAEAEA;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -257,7 +267,7 @@ img {
 
 footer {
   padding: 30px 0;
-  background: #F5F5F5;
+  background: #F5F5F5; /* change footer color */
   border-top: 1px #EAEAEA solid;
   margin-top: 50px;
   font-size: 14px;
@@ -329,6 +339,7 @@ footer .theme-by {
   margin: 0;
   font-weight: 300;
   margin-bottom: 10px;
+  /* color:#404040 change color if desired */
 }
 .post-preview .post-meta,
 .post-heading .post-meta {
@@ -645,3 +656,8 @@ td.gutter {
 #social-share-section {
   margin-bottom: 30px;
 }
+
+/*add this to end for font change
+@font-face {
+  font-family: 'Existence-StencilLight';
+  src: url('../fonts/Existence-StencilLight.otf') format('opentype'); */
