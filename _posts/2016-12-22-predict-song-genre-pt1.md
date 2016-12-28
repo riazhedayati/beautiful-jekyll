@@ -24,9 +24,9 @@ import urllib2
 import numpy
 import csv
  
-lyricsvector = []
-genrevector = []
-songinfovector = []  #artist and songname
+lyricsvector = [] #input (bag of words)
+genrevector = [] #target
+songinfovector = []  #metadata (artist and songname)
 
 # List the URLs here
 urllist = [
@@ -35,8 +35,7 @@ urllist = [
 "http://www.songlyrics.com/news/top-genres/hip-hop-rap/",
 "http://www.songlyrics.com/news/top-genres/rhythm-blues/",
 "http://www.songlyrics.com/news/top-genres/pop/",
-"http://www.songlyrics.com/news/top-genres/rock/"
-]
+"http://www.songlyrics.com/news/top-genres/rock/"]
 </code></pre>
 
 Next, I looped through each genre in the urllist and used beautiful soup to parse the html, looking for links to the top 100 songs in each genre. The urls for each song in the top 100 were stored in a new list called songlinks. 
