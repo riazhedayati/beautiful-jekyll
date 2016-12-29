@@ -5,7 +5,7 @@
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 18px;
-  color: #404040;
+  color: #333333;
   position: relative;
   background: #FFF;
 }
@@ -15,28 +15,25 @@ p {
 }
 p a {
   /* text-decoration: underline */
-  color: #008AFF;
+  color: #567d8f /* previously a6a6a6;*/
 }
-h1,h2,h3,h4,h5,h6 { 
-/* use this to change the font of the largest 2 headers
+/* use this to change the font of the largest 2 headers */
 h1,h2 {
-  font-family: 'Existence-StencilLight', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  color: rgb(0, 180, 161);
+  font-family: 'Proza Libre', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  color: #567d8f;
 }
-
 h3,h4,h5,h6 { 
-*/
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 800; /*change weight to 500 if desired */
-  /* color: #xxxxxx; change this to change text color */
+  font-weight: 800; /* weight to 500 if desired */
+  color: #567d8f; /* change this to change text color */
 }
 a {
-  color: #008AFF;
+  color: #a6a6a6;
 }
 a:hover,
 a:focus {
-  color: #0085a1;
+  color: #a6a6a6;
 }
 blockquote {
   color: #808080;
@@ -74,12 +71,12 @@ hr.small {
 ::-moz-selection {
   color: white;
   text-shadow: none;
-  background: #0085a1;
+  background: #a6a6a6;
 }
 ::selection {
   color: white;
   text-shadow: none;
-  background: #0085a1;
+  background: #a6a6a6;
 }
 img::selection {
   color: white;
@@ -107,7 +104,7 @@ img {
 /* --- Navbar --- */
 
 .navbar-custom {
-  background: #F5F5F5; /* change navbar color */
+  background: #567d8f; /* change navbar color */
   border-bottom: 1px solid #EAEAEA;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -121,14 +118,14 @@ img {
 .navbar-custom .navbar-brand,
 .navbar-custom .nav li a {
   font-weight: 800;
-  color: #404040;
+  color: #333333;
 }
 
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus ,
 .navbar-custom .nav li a:hover,
 .navbar-custom .nav li a:focus {
-  color: #0085a1;
+  color: #a6a6a6;
 }
 
 .navbar-custom .navbar-brand-logo {
@@ -267,14 +264,14 @@ img {
 
 footer {
   padding: 30px 0;
-  background: #F5F5F5; /* change footer color */
+  background: #567d8f; /* change footer color */
   border-top: 1px #EAEAEA solid;
   margin-top: 50px;
   font-size: 14px;
 }
 
 footer a {
-  color: #404040;
+  color: #333333;
 }
 
 footer .list-inline {
@@ -285,10 +282,12 @@ footer .copyright {
   font-family: Open Sans;
   text-align: center;
   margin-bottom: 0;
+  color: #a6a6a6
 }
 footer .theme-by {
   text-align: center;
   margin: 10px 0 0;
+  color: #a6a6a6
 }
 
 @media only screen and (min-width: 768px) {
@@ -322,13 +321,13 @@ footer .theme-by {
 
 .post-preview a {
   text-decoration: none;
-  color: #404040;
+  color: #333333;
 }
 
 .post-preview a:focus,
 .post-preview a:hover {
   text-decoration: none;
-  color: #0085a1;
+  color: #a6a6a6;
 }
 
 .post-preview .post-title {
@@ -339,7 +338,7 @@ footer .theme-by {
   margin: 0;
   font-weight: 300;
   margin-bottom: 10px;
-  /* color:#404040 change color if desired */
+  color: #333333 
 }
 .post-preview .post-meta,
 .post-heading .post-meta {
@@ -371,14 +370,14 @@ footer .theme-by {
 }
 
 .blog-tags a {
-  color: #008AFF;
+  color: #a6a6a6;
   text-decoration: none;
   padding: 0px 5px;
 }
 
 .blog-tags a:hover {
   border-radius: 2px;
-  color: #008AFF;
+  color: #a6a6a6;
   background-color: #CCC;
 }
 
@@ -551,7 +550,7 @@ footer .theme-by {
   padding: 10px 5px;
   background: #FFF;
   border-radius: 0;
-  color: #404040;
+  color: #333333;
 }
 @media only screen and (min-width: 768px) {
   .pager li a {
@@ -561,8 +560,8 @@ footer .theme-by {
 .pager li a:hover,
 .pager li a:focus {
   color: #FFF;
-  background: #0085a1;
-  border: 1px solid #0085a1;
+  background: #a6a6a6;
+  border: 1px solid #a6a6a6;
 }
 
 .pager {
@@ -618,7 +617,7 @@ table tr td :last-child {
 /* --- Code blocks --- */
 
 pre {
-  font-size: 16px;
+  font-size: 14px; /* try making code smaller...previously 16px */
   line-height: 1.5em;
 }
 pre code {
@@ -657,7 +656,7 @@ td.gutter {
   margin-bottom: 30px;
 }
 
-/*add this to end for font change
+/*
 @font-face {
-  font-family: 'Existence-StencilLight';
-  src: url('../fonts/Existence-StencilLight.otf') format('opentype'); */
+  font-family: 'Proza Libre', sans-serif;
+  src: url('../_plugins/ProzaLibre-Regular.ttf') format('truetype'); */
