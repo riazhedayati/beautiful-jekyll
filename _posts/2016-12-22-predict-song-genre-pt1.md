@@ -6,7 +6,7 @@ subtitle: Data collection using Python
 
 I’ve always loved music. In order to learn more about text mining, I thought it would be interesting to see if it was possible to predict a song’s genre using its lyrics.
 
-### Defining our target
+## Defining our target
 If we’re going to try to predict a song’s genre using its lyrics, one big issue to think about first is the subjective nature of our target variable, _genre_. For example, is Taylor Swift a pop artist, or a country singer? Similarly, are _Alternative_ and _Heavy Metal_ separate genres, or can you just classify both as just _Rock_?  Classifying a song within a genre is a subjective exercise.
  
 Luckily, I was able to avoid listening to hundreds of songs and making my own subjective assessments on genre, thanks to a website called [Songlyrics](http://www.songlyrics.com/news/top-genres/country-music). Songlyrics.com provided lyrics for the top 100 songs in 6 different genres: Christian, Country, Rap, Pop, R&B, and Rock. While there was no information from Songlyrics on how they made their decisions (How did they determine genre? Top 100 songs by what metric?), the songs passed the sniff test: Hank Williams was in the Country genre, and Guns N’Roses were in the Rock genre.
