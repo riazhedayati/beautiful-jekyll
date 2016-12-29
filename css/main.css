@@ -18,12 +18,12 @@ p a {
   color: #567d8f /* previously a6a6a6;*/
 }
 /* use this to change the font of the largest 2 headers */
-h1,h2,h3 {
+h1,h2 {
   font-family: 'Proza Libre', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 600;
   color: #567d8f;
 }
-h4,h5,h6 { 
+h3,h4,h5,h6 { 
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800; /* weight to 500 if desired */
   color: #567d8f; /* change this to change text color */
