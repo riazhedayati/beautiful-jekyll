@@ -69,7 +69,7 @@ for i in range(0,6):
 
 Now that we have the song specific links, it’s time to extract the lyric text from each of those pages, along with some other relevant information. A typical page looks something like [this](http://www.songlyrics.com/the-beatles/yesterday-lyrics/). 
 
-Using the beautiful soup library again, we were able to capture the songlyrics, genre, and songinfo from each url, and save the results to the empty vectors we created at the outset. After looping through each of the 600 links, I exported the data to a text file. 
+Using the beautifulsoup library again, we are able to capture the songlyrics, genre, and songinfo from each url, and save the results to the empty vectors created earlier. After looping through each of the 600 links, data was exported to a text file. 
  
 <pre><code class="language-python line-numbers"># loop through songlinks list to get the actual lyrics
     for k in range(0,len(songlinks)):
