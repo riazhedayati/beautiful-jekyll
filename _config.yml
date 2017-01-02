@@ -23,7 +23,7 @@ description: "Personal Website"
 
 # List of links in the navigation bar
 navbar-links:
-#  Projects: ""
+  Projects: ""
   About: "about"
 # Contact: "contact"
   
