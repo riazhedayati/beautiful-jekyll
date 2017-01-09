@@ -79,13 +79,13 @@ ggplot(genremean, aes(x = factor(genre), y = meanwords)) + geom_bar(stat = "iden
 
 ## Creating the Corpus
 Next, we have to clean up the lyrical text itself. We’ll create a variable called corpus using the tm package where we’ll do all of the cleaning. The first four steps to cleaning the corpus are pretty straightforward:
-<ol>
-  <li value="1">Make all words lowercase</li>
+<ol><li value="1">Make all words lowercase</li>
   <li>Remove all formatting</li>
   <li>Remove punctuation</li>
   <li>Remove any whitespace</li>
 </ol>
-  
+
+
 <pre><code class="language-r line-numbers"># Create corpus from lyrics and clean it
 corpus = Corpus(VectorSource(lyrics$Lyrics))
 
@@ -98,10 +98,9 @@ corpus <- tm_map(corpus, stripWhitespace) #remove any white space
 
 
 We also need to take a few more steps: 
-<ol>
-  <li value="5">Drop stopwords</li>
+<ol><li value="5">Drop stopwords</li>
   <li>Stemming</li>
-  <li>Remove sparse termsn</li>
+  <li>Remove sparse terms</li>
 </ol>
 
 Stopwords are common words which add no value to the context or meaning of a document (words like _the_, _and_, _which_, etc). 
