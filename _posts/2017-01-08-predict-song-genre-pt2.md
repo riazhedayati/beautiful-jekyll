@@ -4,9 +4,9 @@ title: Predicting Song Genre using Lyrics (part 2)
 subtitle: Cleaning and Exploration in R
 ---
 
-In case you missed it please see part 1 of this post [here](https://riazhedayati.github.io/blog/predict-song-genre-pt1/).
+Please see part 1 of this post [HERE](https://riazhedayati.github.io/blog/predict-song-genre-pt1/).
 
-Now that we have the data, it’s time to clean it and start doing some exploration. Here is a snapshot of our data:
+Now that we have the data, it’s time to clean it and start doing some exploration. Here is a snapshot of what our data looks like:
 
 ![Alt text](/img/songlyrics/lyricdatasnapshot.JPG "Data Snapshot")
 
@@ -14,7 +14,7 @@ Now that we have the data, it’s time to clean it and start doing some explorat
 
 
 ## Cleaning the Data
-After loading all necessary libraries and reading in the data, we’ll start by splitting the songinfo column into two variables: Artist and Song Title. 
+After loading all necessary libraries and reading in the data, we’ll start by splitting the songinfo column into two variables: _Artist_ and _Song Title_. 
 
 <pre><code class="language-r line-numbers">#check to see which libraries we really need
 library(tm)
@@ -38,23 +38,19 @@ lyrics$SongTitle <- sapply(strsplit(lyrics$SongInfo, ' - '), '[', 2)
 
 
 
-It looks like there are some songs which are listed in the top 100 of multiple genres. While we could manually decide the more appropriate genre for the duplicated song, for simplicity we are just drop the second instance. 
+It looks like there are some songs which are listed in the top 100 of multiple genres. While we could manually decide the more appropriate genre for each duplicated song, for simplicity we are just going to drop the second instance. 
 
-<pre><code class="language-r line-numbers">str(lyrics)
-head(lyrics)
-table(lyrics$Genre)
-
-#check for and remove duplicates
+<pre><code class="language-r line-numbers">#check for and remove duplicates
 lyrics$SongTitle[duplicated(lyrics$SongTitle)]
 lyrics <- subset(lyrics, !duplicated(lyrics$SongTitle))
 table(lyrics$Genre)
 </code></pre>
 
 
-Although we were aiming to have 100 songs in each of the six genres, it appears that after dropping duplicates and accounting for broken links, our sample size drops to between 87 and 99 per genre.
+Although we initially thought we were going to have 100 songs in each of the six genres, it appears that after dropping duplicates and accounting for broken links, our sample size drops to between 87 and 99 per genre.
 
 ```
-##    Christian    Country Music   Hip Hop/Rap          Pop          R&B          Rock 
+##    Christian         Country          Rap           Pop           R&B          Rock 
 ##           99             87            91            90            91            91 
 ```
 
@@ -82,12 +78,11 @@ ggplot(genremean, aes(x = factor(genre), y = meanwords)) + geom_bar(stat = "iden
 
 
 ## Creating the Corpus
-Finally, we have to clean up the lyrical text itself. We’ll create a variable called corpus using the tm package where we’ll do all of the cleaning. The first four steps to cleaning the corpus are pretty straightforward: 
-
-1\. Make all words lowercase
-2\. Remove all formatting
-3\. Remove punctuation
-4\. Remove any whitespace
+Next, we have to clean up the lyrical text itself. We’ll create a variable called corpus using the tm package where we’ll do all of the cleaning. The first four steps to cleaning the corpus are pretty straightforward: 
+  1). Make all words lowercase
+  2). Remove all formatting
+  3). Remove punctuation
+  4). Remove any whitespace
 
 <pre><code class="language-r line-numbers"># Create corpus from lyrics and clean it
 corpus = Corpus(VectorSource(lyrics$Lyrics))
@@ -101,6 +96,7 @@ corpus <- tm_map(corpus, stripWhitespace) #remove any white space
 
 
 We also need to take a few more steps: 
+
 5\. Drop stopwords
 6\. Stem words
 7\. Remove sparse terms
@@ -117,7 +113,7 @@ corpus = tm_map(corpus, stemDocument, language="english") #stemming
 
 # create document term matrix
 dtm = DocumentTermMatrix(corpus)
-dtm
+dtm #6762 unique terms
 
 # Remove sparse terms
 dtm = removeSparseTerms(dtm, 0.98)
@@ -127,7 +123,7 @@ dtm #785 terms remain, with sparcity of 93%
 
 
 ## Visualizations
-We’ll create some visualizations to better understand the lyrics of all the songs in our data. We’ll create a word cloud using the top 40 most common words, as well as a barchart of the top 20 most common words. Both visualizations are created using the cleaned dataset before stemming, as stemming did not affect the results. 
+We’ll create some visualizations to better understand the most common lyrics of the songs in our dataset, including a word cloud using the top 40 most common words, as well as a barchart of the frequency of top 20 most common words. Both visualizations are created using the cleaned dataset before stemming. 
 
 <pre><code class="language-r line-numbers"># create word cloud
 freq <- sort(colSums(as.matrix(dtmcloud)), decreasing=TRUE)
@@ -142,8 +138,7 @@ ggplot(subset(wf, freq>450), aes(word, freq)) +
   labs(list(title = "Frequency of Top 20 Words", x = "Word", y ="Frequency"))
 </code></pre>
 
-
-
+#### 
 ### Wordcloud
 ![alt text](/img/songlyrics/wordcloud.jpeg "Wordcloud - Top 40 Terms")
 
