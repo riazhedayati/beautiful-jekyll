@@ -8,15 +8,13 @@ In case you missed it please see part 1 of this post [here](link).
 
 Now that we have the data, it’s time to clean it and start doing some exploration. Here is a snapshot of our data:
 
-<insert photo of data viewer from R>
+![alt text](riazhedayati.github.io/img/songlyrics/lyricdatasnapshot.JPG "Data Snapshot")
 
 
-##Cleaning the Data
+## Cleaning the Data
 After loading all necessary libraries and reading in the data, we’ll start by splitting the songinfo column into two variables: Artist and Song Title. 
 
-<pre><code class="language-r line-numbers">
-
-#check to see which libraries we really need
+<pre><code class="language-r line-numbers">#check to see which libraries we really need
 library(tm)
 library(lsa)
 library(fpc)   
@@ -37,6 +35,7 @@ lyrics$SongTitle <- sapply(strsplit(lyrics$SongInfo, ' - '), '[', 2)
 </code></pre>
 
 
+
 It looks like there are some songs which are listed in the top 100 of multiple genres. While we could manually decide the more appropriate genre for the duplicated song, for simplicity we are just drop the second instance. 
 
 <pre><code class="language-r line-numbers">str(lyrics)
@@ -52,7 +51,7 @@ table(lyrics$Genre)
 
 Although we were aiming to have 100 songs in each of the six genres, it appears that after dropping duplicates and accounting for broken links, our sample size drops to between 87 and 99 per genre.
 
-```r
+```
 ##   Christian Country Music   Hip Hop/Rap           Pop           R&B          Rock 
 ##           99            87            91            90            91            91 
 ```
@@ -73,7 +72,7 @@ ggplot(genremean, aes(x = factor(genre), y = meanwords)) + geom_bar(stat = "iden
   scale_x_discrete("Genre")
 </code></pre>
 
-<insert plot>
+![alt text](https://github.com/riazhedayati/riazhedayati.github.io/blob/master/img/songlyrics/wordcountbygenre.jpeg "Data Snapshot")
 
 
 Finally, we have to clean up the lyrical text itself. We’ll create a variable called corpus using the tm package where we’ll do all of the cleaning. The first four steps to cleaning the corpus are pretty straightforward: 
