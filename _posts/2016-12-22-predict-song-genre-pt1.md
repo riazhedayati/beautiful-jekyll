@@ -92,5 +92,5 @@ with open('~\TextMining_Lyrics.txt', 'w') as f:
                writer.writerows(zip(songinfovector, lyricsvector, genrevector))
 </code></pre>
 
-Now that we have a dataset, it is time to do some cleaning and exploration. Please see part 2 of the post [here]().
+Now that we have a dataset, it is time to do some cleaning and exploration. Please see part 2 of the post [here](https://riazhedayati.github.io/blog/predict-song-genre-pt2/).
 
