@@ -8,7 +8,7 @@ In case you missed it please see part 1 of this post [here](link).
 
 Now that we have the data, it’s time to clean it and start doing some exploration. Here is a snapshot of our data:
 
-![alt text](riazhedayati.github.io/img/songlyrics/lyricdatasnapshot.JPG "Data Snapshot")
+![Alt text](/img/songlyrics/lyricdatasnapshot.JPG "Data Snapshot")
 
 
 ## Cleaning the Data
@@ -72,7 +72,7 @@ ggplot(genremean, aes(x = factor(genre), y = meanwords)) + geom_bar(stat = "iden
   scale_x_discrete("Genre")
 </code></pre>
 
-![alt text](https://github.com/riazhedayati/riazhedayati.github.io/blob/master/img/songlyrics/wordcountbygenre.jpeg "Data Snapshot")
+![alt text](/img/songlyrics/wordcountbygenre.jpeg "Data Snapshot")
 
 
 Finally, we have to clean up the lyrical text itself. We’ll create a variable called corpus using the tm package where we’ll do all of the cleaning. The first four steps to cleaning the corpus are pretty straightforward: 
