@@ -4,10 +4,12 @@ title: Predicting Song Genre using Lyrics (part 2)
 subtitle: Cleaning and Exploration in R
 ---
 
-In case you missed it please see part 1 of this post [here](link).
+In case you missed it please see part 1 of this post [here](https://riazhedayati.github.io/blog/predict-song-genre-pt1/).
 
 Now that we have the data, it’s time to clean it and start doing some exploration. Here is a snapshot of our data:
+
 ![Alt text](/img/songlyrics/lyricdatasnapshot.JPG "Data Snapshot")
+
 
 
 
@@ -56,6 +58,8 @@ Although we were aiming to have 100 songs in each of the six genres, it appears 
 ##           99             87            91            90            91            91 
 ```
 
+
+
 ## Feature Engineering
 We’ll also do a bit of feature engineering by creating a variable that contains the wordcount for each song. The minimum number of words for a song in our dataset is 54, the median is 248, and the max is 2936. We’ll also plot the mean wordcount by genre.
 
@@ -68,15 +72,21 @@ genremean <- data.frame(genre=levels(as.factor(lyrics$Genre)),
                   meanwords=tapply(lyrics$WordCount, lyrics$Genre, mean))
 
 ggplot(genremean, aes(x = factor(genre), y = meanwords)) + geom_bar(stat = "identity") +
-  geom_text(aes(y=meanwords, ymax=800, label=round(meanwords,0)), position= position_dodge(width=0.9), vjust=-.5, color="black") +
+  geom_text(aes(y=meanwords, ymax=800, label=round(meanwords,0)), 
+                position= position_dodge(width=0.9), vjust=-.5, color="black") +
   scale_y_continuous("Average Wordcount",limits=c(0,800),breaks=seq(0, 800, 200)) + 
   scale_x_discrete("Genre")
 </code></pre>
 
 ![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
 
+
 ## Creating the Corpus
 Finally, we have to clean up the lyrical text itself. We’ll create a variable called corpus using the tm package where we’ll do all of the cleaning. The first four steps to cleaning the corpus are pretty straightforward: 
+1. Make all words lowercase
+2. Item
+
+
 1. Make all words lowercase
 2. Remove all formatting
 3. Remove punctuation
@@ -94,11 +104,14 @@ corpus <- tm_map(corpus, stripWhitespace) #remove any white space
 
 
 We also need to take a few more steps: 
+
 5. Drop stopwords
 6. Stem words
 7. Remove sparse terms
 
-Stopwords are common words which add no value to the context or meaning of a document (words like _the_, _and_, which_, etc). Stemming words allows us to combine words in the corpus that have the same stem. For instance, the words _love_, _loved_, and _loving_ would be combined into the same root. 
+Stopwords are common words which add no value to the context or meaning of a document (words like _the_, _and_, which_, etc). 
+
+Stemming words allows us to combine words in the corpus that have the same stem. For instance, the words _love_, _loved_, and _loving_ would be combined into the same root. 
 
 Finally, in order to make our dataset a more manageable size, we will remove sparse terms, keeping only terms that appear in more than 2% of the songs in our dataset. This brings us from 6762 unique stems down to 785. 
 
@@ -116,8 +129,9 @@ dtm #785 terms remain, with sparcity of 93%
 </code></pre>
 
 
+
 ## Visualizations
-Finally, we’ll create some visualizations to better understand the lyrics of all the songs in our data. We’ll create a word cloud using the top 40 most common words, as well as a barchart of the top 20 most common words. Both visualizations are created using the cleaned dataset before stemming, as stemming did not affect the results. 
+We’ll create some visualizations to better understand the lyrics of all the songs in our data. We’ll create a word cloud using the top 40 most common words, as well as a barchart of the top 20 most common words. Both visualizations are created using the cleaned dataset before stemming, as stemming did not affect the results. 
 
 <pre><code class="language-r line-numbers"># create word cloud
 freq <- sort(colSums(as.matrix(dtmcloud)), decreasing=TRUE)
@@ -132,13 +146,15 @@ ggplot(subset(wf, freq>450), aes(word, freq)) +
   labs(list(title = "Frequency of Top 20 Words", x = "Word", y ="Frequency"))
 </code></pre>
 
-#### Wordcloud
+
+### Wordcloud
 ![alt text](/img/songlyrics/wordcloud.jpeg "Wordcloud - Top 40 Terms")
 
-#### Most Frequent Words
+
+### Most Frequent Words
 ![alt text](/img/songlyrics/top20barplot.jpeg "Top 20 Words")
 
 
-Now that we have a cleaned dataset, we can start making some predictions. Please see part 3 of the post [here](link).
+Now that we have a cleaned dataset, we can start making some predictions. Please see part 3 of the post [here](https://riazhedayati.github.io/blog/predict-song-genre-pt3/).
 
 
