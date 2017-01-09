@@ -7,8 +7,8 @@ subtitle: Cleaning and Exploration in R
 In case you missed it please see part 1 of this post [here](link).
 
 Now that we have the data, it’s time to clean it and start doing some exploration. Here is a snapshot of our data:
-
 ![Alt text](/img/songlyrics/lyricdatasnapshot.JPG "Data Snapshot")
+
 
 
 ## Cleaning the Data
@@ -52,8 +52,8 @@ table(lyrics$Genre)
 Although we were aiming to have 100 songs in each of the six genres, it appears that after dropping duplicates and accounting for broken links, our sample size drops to between 87 and 99 per genre.
 
 ```
-##   Christian Country Music   Hip Hop/Rap           Pop           R&B          Rock 
-##           99            87            91            90            91            91 
+##    Christian    Country Music   Hip Hop/Rap          Pop          R&B          Rock 
+##           99             87            91            90            91            91 
 ```
 
 We’ll also do a bit of feature engineering by creating a variable that contains the wordcount for each song. The minimum number of words for a song in our dataset is 54, the median is 248, and the max is 2936. We’ll also plot the mean wordcount by genre.
@@ -72,14 +72,14 @@ ggplot(genremean, aes(x = factor(genre), y = meanwords)) + geom_bar(stat = "iden
   scale_x_discrete("Genre")
 </code></pre>
 
-![alt text](/img/songlyrics/wordcountbygenre.jpeg "Data Snapshot")
+![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
 
 
 Finally, we have to clean up the lyrical text itself. We’ll create a variable called corpus using the tm package where we’ll do all of the cleaning. The first four steps to cleaning the corpus are pretty straightforward: 
-1.	Make all words lowercase
-2.	Remove all formatting
-3.	Remove punctuation
-4.	Remove any whitespace
+1. Make all words lowercase
+2. Remove all formatting
+3. Remove punctuation
+4. Remove any whitespace
 
 <pre><code class="language-r line-numbers"># Create corpus from lyrics and clean it
 corpus = Corpus(VectorSource(lyrics$Lyrics))
@@ -93,9 +93,9 @@ corpus <- tm_map(corpus, stripWhitespace) #remove any white space
 
 
 We also need to take a few more steps: 
-5.	Drop stopwords
-6.	Stem words
-7.	Remove sparse terms
+5. Drop stopwords
+6. Stem words
+7. Remove sparse terms
 
 Stopwords are common words which add no value to the context or meaning of a document(words like ‘the’, ‘and’, ‘that’, ‘which’, etc). 
 
@@ -132,7 +132,10 @@ ggplot(subset(wf, freq>450), aes(word, freq)) +
   labs(list(title = "Frequency of Top 20 Words", x = "Word", y ="Frequency"))
 </code></pre>
 
-<insert wordcloud and barchart>
+![alt text](/img/songlyrics/wordcloud.jpeg "Wordcloud - Top 40 Terms")
+
+![alt text](/img/songlyrics/top20barplot.jpeg "Top 20 Words")
+
 
 Now that we have a cleaned dataset, we can start making some predictions. Please see part 3 of the post [here](link).
 
