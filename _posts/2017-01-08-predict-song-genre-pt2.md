@@ -6,7 +6,7 @@ subtitle: Cleaning and Exploration in R
 
 Please see part 1 of this post [HERE](https://riazhedayati.github.io/blog/predict-song-genre-pt1/).
 
-Now that we have the data, it’s time to clean it and start doing some exploration. Here is a snapshot of what our data looks like:
+Now that we have the data, it’s time to start doing some cleaning and exploration in R. Here is a snapshot of what our data looks like:
 
 ![Alt text](/img/songlyrics/lyricdatasnapshot.JPG "Data Snapshot")
 
@@ -125,7 +125,7 @@ dtm #785 terms remain, with sparcity of 93%
 
 
 ## Visualizations
-We’ll create some visualizations to better understand the most common lyrics of the songs in our dataset, including a word cloud using the top 40 most common words, as well as a barchart of the frequency of top 20 most common words. Both visualizations are created using the cleaned dataset before stemming. 
+We’ll create some visualizations to better understand the most common lyrics of the songs in our dataset, including a word cloud using the top 40 most common words and a barchart of the frequency of top 20 most common words. Both visualizations are created using the cleaned dataset before stemming. 
 
 <pre><code class="language-r line-numbers"># create word cloud
 freq <- sort(colSums(as.matrix(dtmcloud)), decreasing=TRUE)
