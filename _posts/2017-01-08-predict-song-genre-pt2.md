@@ -83,14 +83,10 @@ ggplot(genremean, aes(x = factor(genre), y = meanwords)) + geom_bar(stat = "iden
 
 ## Creating the Corpus
 Finally, we have to clean up the lyrical text itself. We’ll create a variable called corpus using the tm package where we’ll do all of the cleaning. The first four steps to cleaning the corpus are pretty straightforward: 
-1. Make all words lowercase
-2. Item
-
-
-1. Make all words lowercase
-2. Remove all formatting
-3. Remove punctuation
-4. Remove any whitespace
+  1. Make all words lowercase
+  2. Remove all formatting
+  3. Remove punctuation
+  4. Remove any whitespace
 
 <pre><code class="language-r line-numbers"># Create corpus from lyrics and clean it
 corpus = Corpus(VectorSource(lyrics$Lyrics))
@@ -105,13 +101,13 @@ corpus <- tm_map(corpus, stripWhitespace) #remove any white space
 
 We also need to take a few more steps: 
 
-5. Drop stopwords
-6. Stem words
-7. Remove sparse terms
+  5. Drop stopwords
+  6. Stem words
+  7. Remove sparse terms
 
-Stopwords are common words which add no value to the context or meaning of a document (words like _the_, _and_, which_, etc). 
+Stopwords are common words which add no value to the context or meaning of a document (words like _the_, _and_, _which_, etc). 
 
-Stemming words allows us to combine words in the corpus that have the same stem. For instance, the words _love_, _loved_, and _loving_ would be combined into the same root. 
+Stemming words allows us to combine words in the corpus that have the same root. For instance, the words _love_, _loves_, _loved_, and _loving_ would be treated as multiple instances of the same word as opposed to different words. 
 
 Finally, in order to make our dataset a more manageable size, we will remove sparse terms, keeping only terms that appear in more than 2% of the songs in our dataset. This brings us from 6762 unique stems down to 785. 
 
@@ -145,6 +141,7 @@ ggplot(subset(wf, freq>450), aes(word, freq)) +
   theme(axis.text.x=element_text(angle=45, hjust=1))  + 
   labs(list(title = "Frequency of Top 20 Words", x = "Word", y ="Frequency"))
 </code></pre>
+
 
 
 ### Wordcloud
