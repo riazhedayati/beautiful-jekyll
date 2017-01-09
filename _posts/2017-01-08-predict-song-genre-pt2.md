@@ -138,7 +138,8 @@ ggplot(subset(wf, freq>450), aes(word, freq)) +
   labs(list(title = "Frequency of Top 20 Words", x = "Word", y ="Frequency"))
 </code></pre>
 
-#### 
+
+
 ### Wordcloud
 ![alt text](/img/songlyrics/wordcloud.jpeg "Wordcloud - Top 40 Terms")
 
