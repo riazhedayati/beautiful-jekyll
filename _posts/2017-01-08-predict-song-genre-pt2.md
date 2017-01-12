@@ -122,7 +122,7 @@ dtm #785 terms remain, with sparcity of 93%
 
 
 ## Visualizations
-We’ll create some visualizations to better understand the most common lyrics of the songs in our dataset, including a word cloud using the top 40 most common words and a barchart of the frequency of top 20 most common words. Both visualizations are created using the cleaned dataset before stemming. 
+We’ll create some visualizations to better understand the most common lyrics of the songs in our dataset, including a word cloud and a barchart of the frequency of the 20 most common words. Both visualizations are created using the cleaned dataset before stemming. 
 
 <pre><code class="language-r line-numbers"># create word cloud
 freq <- sort(colSums(as.matrix(dtmcloud)), decreasing=TRUE)
