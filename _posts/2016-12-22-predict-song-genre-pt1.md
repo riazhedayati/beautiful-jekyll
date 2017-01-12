@@ -69,7 +69,7 @@ for i in range(0,6):
 
 Now that we have the song specific links, it’s time to extract the lyric text from each of those pages, along with some other relevant information. A typical page looks something like [this](http://www.songlyrics.com/the-beatles/yesterday-lyrics/). 
 
-Using the beautiful soup library again, we are able to capture the lyrics, genre, and songinfo from each url, and save the results to the empty vectors created earlier. After looping through each of the 600 links, data was exported to a text file. 
+Using the beautiful soup library again, we are able to capture the lyrics, genre, and songinfo from each url, and save the results to the empty vectors created earlier. 
  
 <pre><code class="language-python line-numbers"># loop through songlinks list to get the actual lyrics
     for k in range(0,len(songlinks)):
@@ -86,11 +86,8 @@ Using the beautiful soup library again, we are able to capture the lyrics, genre
         genrevector.append(genre)
         songinfovector.append(songinfo)
  
-# export lyrics to tab delimited file
-with open('~\TextMining_Lyrics.txt', 'w') as f:
-               writer = csv.writer(f, delimiter='\t')
-               writer.writerows(zip(songinfovector, lyricsvector, genrevector))
 </code></pre>
 
-Now that we have a dataset, it is time to do some cleaning and exploration. Please see part 2 of the post [here](https://riazhedayati.github.io/blog/predict-song-genre-pt2/).
+After looping through all of the links, data was exported to a csv, which you can find [here](/img/songlyrics/textminingAllLyrics.csv).
+Now that we have a dataset, it is time to do some cleaning and exploration. Please see [part 2 of this post](https://riazhedayati.github.io/blog/predict-song-genre-pt2/) for the next steps.
 
