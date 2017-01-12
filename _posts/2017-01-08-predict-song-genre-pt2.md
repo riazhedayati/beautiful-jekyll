@@ -14,26 +14,23 @@ Now that we have the data, it’s time to start doing some cleaning and explorat
 
 
 ## Cleaning the Data
-After loading all necessary libraries and reading in the data, we’ll start by splitting the songinfo column into two variables: _Artist_ and _Song Title_. 
+After loading all necessary libraries and reading in the data, we’ll start by splitting the songinfo column into two variables: _Artist_ and _Song Title_. We'll also recode the names of a couple of genres.
 
-<pre><code class="language-r line-numbers">#check to see which libraries we really need
+<pre><code class="language-r line-numbers">library(ggplot2)
 library(tm)
-library(lsa)
-library(fpc)   
-library(cluster)
-library(rpart)
-library(rpart.plot)
-library(caTools)
-library(wordcloud)
 library(RColorBrewer)
-library(ggplot2)
+library(wordcloud)
 
 #read in lyrics 
-lyrics <- read.table("TextMining_Lyrics.txt", stringsAsFactors=FALSE, header=TRUE)
+lyrics <- read.csv("textminingAllLyrics.csv", stringsAsFactors=FALSE, header=TRUE)
 
 #split songinfo into artist and songname
 lyrics$Artist <- sapply(strsplit(lyrics$SongInfo, ' - '), '[', 1)
 lyrics$SongTitle <- sapply(strsplit(lyrics$SongInfo, ' - '), '[', 2)
+
+#rename genres
+lyrics$Genre[lyrics$Genre=="Country Music"] <- "Country"
+lyrics$Genre[lyrics$Genre=="Hip Hop/Rap"] <- "Rap"
 </code></pre>
 
 
@@ -50,8 +47,8 @@ table(lyrics$Genre)
 Although we initially thought we were going to have 100 songs in each of the six genres, it appears that after dropping duplicates and accounting for broken links, our sample size drops to between 87 and 99 per genre.
 
 ```
-##    Christian         Country          Rap           Pop           R&B          Rock 
-##           99             87            91            90            91            91 
+##    Christian         Country          Pop           R&B           Rap          Rock 
+##           99             87            90            91            91            91 
 ```
 
 
@@ -105,9 +102,9 @@ We also need to take a few more steps:
 
 Stopwords are common words which add no value to the context or meaning of a document (words like _the_, _and_, _which_, etc). 
 
-Stemming words allows us to combine words in the corpus that have the same root. For instance, the words _love_, _loves_, _loved_, and _loving_ would be treated as multiple instances of the same word as opposed to different words. 
+Stemming words allows us to combine words in the corpus that have the same root. For instance, the words _love_, _loves_, _loved_, and _loving_ would be treated as multiple instances of the same word. 
 
-Finally, in order to make our dataset a more manageable size, we will remove sparse terms, keeping only terms that appear in more than 2% of the songs in our dataset. This brings us from 6762 unique stems down to 785. 
+Finally we will remove sparse terms, keeping only terms that appear in more than 2% of the songs in our dataset. This brings us from 6762 unique stems down to 785. 
 
 <pre><code class="language-r line-numbers">corpus = tm_map(corpus, removeWords, stopwords("english")) #remove stopwords
 dtmcloud = DocumentTermMatrix(corpus)
