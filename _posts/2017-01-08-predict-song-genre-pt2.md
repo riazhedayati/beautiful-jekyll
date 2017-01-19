@@ -84,12 +84,12 @@ Next, we have to clean up the lyrical text itself. We’ll create a variable cal
 
 
 <pre><code class="language-r line-numbers"># Create corpus from lyrics and clean it
-corpus = Corpus(VectorSource(lyrics$Lyrics))
+corpus <- Corpus(VectorSource(lyrics$Lyrics))
 
-corpus = tm_map(corpus, tolower) #make words lower-case
-corpus = tm_map(corpus, PlainTextDocument) #remove formatting
+corpus <- tm_map(corpus, tolower) #make words lower-case
+corpus <- tm_map(corpus, PlainTextDocument) #remove formatting
 
-corpus = tm_map(corpus, removePunctuation) #remove punctuation
+corpus <- tm_map(corpus, removePunctuation) #remove punctuation
 corpus <- tm_map(corpus, stripWhitespace) #remove any white space
 </code></pre>
 
@@ -107,15 +107,15 @@ Stemming words allows us to combine words in the corpus that have the same root.
 Finally we will remove sparse terms, keeping only terms that appear in more than 2% of the songs in our dataset. This brings us from 6762 unique stems down to 785. 
 
 <pre><code class="language-r line-numbers">corpus = tm_map(corpus, removeWords, stopwords("english")) #remove stopwords
-dtmcloud = DocumentTermMatrix(corpus)
-corpus = tm_map(corpus, stemDocument, language="english") #stemming
+dtmcloud <- DocumentTermMatrix(corpus)
+corpus <- tm_map(corpus, stemDocument, language="english") #stemming
 
 # create document term matrix
-dtm = DocumentTermMatrix(corpus)
+dtm <- DocumentTermMatrix(corpus)
 dtm #6762 unique terms
 
 # Remove sparse terms
-dtm = removeSparseTerms(dtm, 0.98)
+dtm <- removeSparseTerms(dtm, 0.98)
 dtm #785 terms remain, with sparcity of 93%
 </code></pre>
 
