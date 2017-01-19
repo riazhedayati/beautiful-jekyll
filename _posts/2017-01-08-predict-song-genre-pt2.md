@@ -106,7 +106,7 @@ Stemming words allows us to combine words in the corpus that have the same root.
 
 Finally we will remove sparse terms, keeping only terms that appear in more than 2% of the songs in our dataset. This brings us from 6762 unique stems down to 785. 
 
-<pre><code class="language-r line-numbers">corpus = tm_map(corpus, removeWords, stopwords("english")) #remove stopwords
+<pre><code class="language-r line-numbers">corpus <- tm_map(corpus, removeWords, stopwords("english")) #remove stopwords
 dtmcloud <- DocumentTermMatrix(corpus)
 corpus <- tm_map(corpus, stemDocument, language="english") #stemming
 
