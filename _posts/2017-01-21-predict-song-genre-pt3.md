@@ -187,6 +187,6 @@ As expected, the Random Forest outperforms the simple decision tree, with an ove
 
 ## In Summary
 
-Our initial goal was to use song lyrics to predict genre, and our best performing model predicted the correct genre about 63% of the time. Moreover, performance is about 3.8 times better than a naïve baseline.
+Our initial goal was to use song lyrics to predict genre, and our best performing model predicted the correct genre about 63.4% of the time. This is a great improvement over the naïve model baseline of 16.7%
 
-While there are surely some [other](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) [manipulations](https://en.wikipedia.org/wiki/Latent_semantic_analysis) and [models](https://en.wikipedia.org/wiki/Gradient_boosting) we could try to make incremental improvements to our accuracy rate, we at least know predicting genre using song lyrics is possible to some extent.
+While there are surely some [other](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) [manipulations](https://en.wikipedia.org/wiki/Latent_semantic_analysis) and [models](https://en.wikipedia.org/wiki/Gradient_boosting) we could try to make incremental improvements to our accuracy rate, we at least know that predicting genre using song lyrics is possible.
