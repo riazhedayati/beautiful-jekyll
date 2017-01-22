@@ -120,7 +120,7 @@ A naïve model where all songs are classified into the same genre (e.g. _Country
 
 ## Random Forests
 
-For a more accurate prediction we will build a [Random Forest]( https://en.wikipedia.org/wiki/Random_forest), which is essentially just an ensemble of many decision trees which are trained using bootstrapped data and a random subset of variables. While Random Forests tend to lead to better predictions, the downside is that they are more complex and less interpretable. 
+For a more accurate prediction we will build a [Random Forest]( https://en.wikipedia.org/wiki/Random_forest), which is essentially just an ensemble of many decision trees which are trained using bootstrapped data and a random subset of variables. While Random Forests tend to lead to better predictions, the downside is that they are more complex and less interpretable. There is no similar tree output, but we can generate a list of the most important variables in terms of predictive power.
 
 <pre><code class="language-r line-numbers"># create randomForest model
 lyricsRF <- randomForest(as.factor(genre)~., data=lyricsTrain, importance=TRUE)
@@ -129,6 +129,9 @@ varImpPlot(lyricsRF)
 predRF <- predict(lyricsRF, lyricsTest, type="response")
 table(lyricsTest$genre, predRF)
 </code></pre>
+
+### Most Predictive Variables
+![Alt text](/img/songlyrics/MeanDecreaseGiniRF.JPG "Mean Decrease Gini")
 
 Just like we did with the decision tree, we will also compare our predictions to the actual genres using the same test set. 
 
