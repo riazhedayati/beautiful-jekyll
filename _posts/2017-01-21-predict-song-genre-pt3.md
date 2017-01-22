@@ -174,12 +174,12 @@ As expected, the Random Forest outperforms the simple decision tree, with an ove
 ```
 
 ```
-## Christian: 	93.3%
-## Country: 	76.9%
-## Rap: 	88.9%
-## Pop: 	18.5%
-## R&B: 	59.3%
-## Rock: 	40.7%
+##                                   Christian: 	93.3%
+##                                     Country: 	76.9%
+##                                         Rap: 	88.9%
+##                                         Pop: 	18.5%
+##                                         R&B: 	59.3%
+##                                        Rock: 	40.7%
 ```
 
 ## In Summary
