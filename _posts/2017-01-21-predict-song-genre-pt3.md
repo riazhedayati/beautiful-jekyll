@@ -107,12 +107,12 @@ Let’s look at the confusion matrix. The rows of the matrix are the actual genr
 The accuracy rates for each genre are as follows:
 
 ```
-## Christian: 	66.7%
-## Country: 	34.6%
-## Rap:		88.9%
-## Pop:		14.8%
-## R&B:		40.7%
-## Rock:	11.1%
+##                                        Christian: 66.7%
+##                                          Country: 34.6%
+##                                              Rap: 88.9%
+##                                              Pop: 14.8%
+##                                              R&B: 40.7%
+##                                             Rock: 11.1%
 ```
 
 A naïve model where all songs are classified into the same genre (e.g. _Country_) will predict genre correctly approximately 1 in 6 times, so our model has to be right more than 16.67% of the time in order to be worthwhile. It looks like our decision tree outperforms a naïve model overall, but for the _Pop_ and _Rock_ genres it actually underperforms. 
