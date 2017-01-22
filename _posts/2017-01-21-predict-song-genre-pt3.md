@@ -57,6 +57,8 @@ table(lyricsTest$genre, predCART)
 </code></pre>
 
 The decision tree tries to create rules that will categorize each song into a genre. For any given song, we can examine its lyrics and follow the classification rules until our song is assigned to a genre. This is what our trained decision tree looks like: 
+
+### Decision Tree
 ![Alt text](/img/songlyrics/CARTtree.jpeg "Decision Tree")
 
 Now we’ll look at the accuracy of our model. To do this, we will compare our predicted genres with the actual genres of songs in the test set using a [confusion matrix]( https://en.wikipedia.org/wiki/Confusion_matrix). In addition to an overall accuracy rate, we can also calculate an accuracy rate for each genre. 
@@ -92,25 +94,25 @@ predCART.rock[2,2]/sum(predCART.rock[2,])
 Let’s look at the confusion matrix. The rows of the matrix are the actual genres and the columns are the predicted genres. Our accuracy is equal to the number we predicted correctly divided by the total number of songs in the test set. For the decision tree, the overall accuracy rate is (20 + 9 + 4 + 11 + 24 + 3) / 164 = 43.3%.
 
 ```				                 
-						PREDICTED
-		                    Christian Country Pop R&B Rap Rock
-		        Christian        20       3   2   5   0    0
-		        Country           7       9   1   3   0    6
-  ACTUAL		Pop               4       9   4   6   1    3
-		        R&B               5       8   3  11   0    0
-		        Rap               0       0   0   3  24    0
-		        Rock              2       5   4  13   0    3
+## 						PREDICTED
+## 		                    Christian Country Pop R&B Rap Rock
+## 		        Christian        20       3   2   5   0    0
+## 		        Country           7       9   1   3   0    6
+##   ACTUAL		Pop               4       9   4   6   1    3
+## 		        R&B               5       8   3  11   0    0
+## 		        Rap               0       0   0   3  24    0
+## 		        Rock              2       5   4  13   0    3
 ```
 
 The accuracy rates for each genre are as follows:
 
 ```
-Christian: 	66.7%
-Country: 	34.6%
-Rap: 		88.9%
-Pop: 		14.8%
-R&B: 		40.7%
-Rock: 		11.1%
+## Christian: 	66.7%
+## Country: 	34.6%
+## Rap:		88.9%
+## Pop:		14.8%
+## R&B:		40.7%
+## Rock:	11.1%
 ```
 
 A naïve model where all songs are classified into the same genre (e.g. _Country_) will predict genre correctly approximately 1 in 6 times, so our model has to be right more than 16.67% of the time in order to be worthwhile. It looks like our decision tree outperforms a naïve model overall, but for the _Pop_ and _Rock_ genres it actually underperforms. 
@@ -161,23 +163,23 @@ predRF.rock[2,2]/sum(predRF.rock[2,])
 As expected, the Random Forest outperforms the simple decision tree, with an overall accuracy rate of 63.4%. The genre-specific accuracy rates also improve:
 
 ```					                           
-						PREDICTED
-		                    Christian Country Pop R&B Rap Rock
-		        Christian        28       0   0   1   0    1
-		        Country           1      20   0   3   0    2
-  ACTUAL	 	Pop               4       6   5   5   1    6
-	      	  	R&B               2       7   1  16   0    1
-		        Rap               0       0   2   1  24    0
-		        Rock              2       6   1   5   2   11
+##  						PREDICTED
+##  		                    Christian Country Pop R&B Rap Rock
+## 		        Christian        28       0   0   1   0    1
+## 		        Country           1      20   0   3   0    2
+##   ACTUAL	 	Pop               4       6   5   5   1    6
+## 	      	  	R&B               2       7   1  16   0    1
+## 		        Rap               0       0   2   1  24    0
+## 		        Rock              2       6   1   5   2   11
 ```
 
 ```
-Christian: 	93.3%
-Country: 	76.9%
-Rap: 		88.9%
-Pop: 		18.5%
-R&B: 		59.3%
-Rock: 		40.7%
+## Christian: 	93.3%
+## Country: 	76.9%
+## Rap: 	88.9%
+## Pop: 	18.5%
+## R&B: 	59.3%
+## Rock: 	40.7%
 ```
 
 ## In Summary
