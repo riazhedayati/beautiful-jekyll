@@ -71,6 +71,7 @@ ggplot(genremean, aes(x = factor(genre), y = meanwords)) + geom_bar(stat = "iden
   scale_x_discrete("Genre")
 </code></pre>
 
+### Average Wordcount by Genre
 ![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
 
 
