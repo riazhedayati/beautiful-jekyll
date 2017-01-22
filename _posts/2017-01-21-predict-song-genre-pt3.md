@@ -57,7 +57,7 @@ table(lyricsTest$genre, predCART)
 </code></pre>
 
 The decision tree tries to create rules that will categorize each song into a genre. For any given song, we can examine its lyrics and follow the classification rules until our song is assigned to a genre. This is what our trained decision tree looks like: 
-<! Include image of tree >
+![Alt text](/img/songlyrics/CARTtree.jpeg "Decision Tree")
 
 Now we’ll look at the accuracy of our model. To do this, we will compare our predicted genres with the actual genres of songs in the test set using a [confusion matrix]( https://en.wikipedia.org/wiki/Confusion_matrix). In addition to an overall accuracy rate, we can also calculate an accuracy rate for each genre. 
 
@@ -89,7 +89,7 @@ predCART.rock<-table(lyricsTest$genre=="Rock",predCART=="Rock")
 predCART.rock[2,2]/sum(predCART.rock[2,])
 </code></pre>
 
-Let’s look at the confusion matrix. The rows of the matrix are the actual genres and the columns are the predicted genres. Our accuracy is equal to the number we predicted correctly divided by the total number of songs in the test set. For the decision tree, the overall accuracy rate is (20+9+4+11+24+3)/164 = 43.3%.
+Let’s look at the confusion matrix. The rows of the matrix are the actual genres and the columns are the predicted genres. Our accuracy is equal to the number we predicted correctly divided by the total number of songs in the test set. For the decision tree, the overall accuracy rate is (20 + 9 + 4 + 11 + 24 + 3) / 164 = 43.3%.
 
 ```				                 
 						PREDICTED
