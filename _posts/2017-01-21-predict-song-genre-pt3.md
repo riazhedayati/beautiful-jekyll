@@ -33,7 +33,7 @@ names(lyrics.tree)[names(lyrics.tree) == 'next'] <- 'next1'
 names(lyrics.tree)[names(lyrics.tree) == 'repeat'] <- 'repeat1'
 </code></pre>
 
-## Create Training and Test sets
+## Create Training and Test Sets
 Before we start building models, we first need to split the data. In this case, splitting the data using a simple random sample should be sufficient. We will use 70% of the data to train the models, then we will apply our models to the other 30% of the data.
 
 Using the test set, we can compare the genre predictions to the true genre for each song and calculate an accuracy rate. This will allow us to see which model performs the best on data not used to build the model, and will help us ensure that our selected model will generalize well to new data.
@@ -45,7 +45,7 @@ lyricsTest = subset(lyrics.tree, spl == FALSE)
 </code></pre>
 
 
-## Build a Decision Tree
+## Building a Decision Tree
 As a first pass at predicting genre we will build a simple [decision tree]( https://en.wikipedia.org/wiki/Decision_tree). Decision trees are a great starting point as they are simple and easily interpretable. We will then use the model to make predictions on the test set. 
 
 <pre><code class="language-r line-numbers"># create decision tree model
@@ -91,11 +91,12 @@ predCART.rock[2,2]/sum(predCART.rock[2,])
 
 Let’s look at the confusion matrix. The rows of the matrix are the actual genres and the columns are the predicted genres. Our accuracy is equal to the number we predicted correctly divided by the total number of songs in the test set. For the decision tree, the overall accuracy rate is (20+9+4+11+24+3)/164 = 43.3%.
 
-```					                            PREDICTED
+```				                 
+						PREDICTED
 		                    Christian Country Pop R&B Rap Rock
 		        Christian        20       3   2   5   0    0
 		        Country           7       9   1   3   0    6
-  ACTUAL	  Pop               4       9   4   6   1    3
+  ACTUAL		Pop               4       9   4   6   1    3
 		        R&B               5       8   3  11   0    0
 		        Rap               0       0   0   3  24    0
 		        Rock              2       5   4  13   0    3
@@ -104,12 +105,12 @@ Let’s look at the confusion matrix. The rows of the matrix are the actual genr
 The accuracy rates for each genre are as follows:
 
 ```
-Christian: 66.7%
-Country: 34.6%
-Rap: 88.9%
-Pop: 14.8%
-R&B: 40.7%
-Rock: 11.1%
+Christian: 	66.7%
+Country: 	34.6%
+Rap: 		88.9%
+Pop: 		14.8%
+R&B: 		40.7%
+Rock: 		11.1%
 ```
 
 A naïve model where all songs are classified into the same genre (e.g. _Country_) will predict genre correctly approximately 1 in 6 times, so our model has to be right more than 16.67% of the time in order to be worthwhile. It looks like our decision tree outperforms a naïve model overall, but for the _Pop_ and _Rock_ genres it actually underperforms. 
@@ -157,26 +158,26 @@ predRF.rock<-table(lyricsTest$genre=="Rock",predRF=="Rock")
 predRF.rock[2,2]/sum(predRF.rock[2,])
 </code></pre>
 
+As expected, the Random Forest outperforms the simple decision tree, with an overall accuracy rate of 63.4%. The genre-specific accuracy rates also improve:
 
-```					                           PREDICTED
+```					                           
+						PREDICTED
 		                    Christian Country Pop R&B Rap Rock
 		        Christian        28       0   0   1   0    1
 		        Country           1      20   0   3   0    2
-  ACTUAL	  Pop               4       6   5   5   1    6
-	      	  R&B               2       7   1  16   0    1
+  ACTUAL	 	Pop               4       6   5   5   1    6
+	      	  	R&B               2       7   1  16   0    1
 		        Rap               0       0   2   1  24    0
 		        Rock              2       6   1   5   2   11
 ```
 
-As expected, the Random Forest outperforms the simple decision tree, with an overall accuracy rate of 63.4%. The genre-specific accuracy rates also improve:
-
 ```
-Christian: 93.3%
-Country: 76.9%
-Rap: 88.9%
-Pop: 18.5%
-R&B: 59.3%
-Rock: 40.7%
+Christian: 	93.3%
+Country: 	76.9%
+Rap: 		88.9%
+Pop: 		18.5%
+R&B: 		59.3%
+Rock: 		40.7%
 ```
 
 ## In Summary
