@@ -133,6 +133,8 @@ table(lyricsTest$genre, predRF)
 ### Most Predictive Variables
 ![Alt text](/img/songlyrics/MeanDecreaseGiniRF.JPG "Mean Decrease Gini")
 
+<center><img src="/img/songlyrics/MeanDecreaseGiniRF.JPG" alt="Mean Decrease Gini" "width: 50%; height: 50%"></center>
+
 Just like we did with the decision tree, we will also compare our predictions to the actual genres using the same test set. 
 
 <pre><code class="language-r line-numbers">#calculate overall accuracy with RF
