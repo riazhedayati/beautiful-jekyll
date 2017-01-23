@@ -16,7 +16,7 @@ I really like this dataset, because it’s pretty easy to understand even for pe
 Our target is the variable _income_, where 1 means that an individual had an income of greater than $50K, and 0 means they did not. In this dataset, only about 25% of people were in this high income group. The goal of our analysis is to build a model using demographic characteristics to predict if someone makes more than $50K. 
 
 ## Data Prep
-First, we’ll clean the data. In order to save some time on the data cleaning portion of this exercise, I used [some code from the SDSU Statistical Consulting Group’s website]( http://scg.sdsu.edu/dataset-adult_r/). They have a great post detailing the steps they took in detail, but essentially they:
+First, we’ll clean the data. In order to save some time on the data cleaning portion of this exercise, I used [some code from the SDSU Statistical Consulting Group’s website]( http://scg.sdsu.edu/dataset-adult_r/). They have a great post detailing the steps they took in detail, but essentially the steps were to:
 
 - drop a couple variables 
 - bin similar responses within variables
