@@ -6,6 +6,7 @@ subtitle: Open Source Integration in SAS Enterprise Miner
 
 Today we’re going to look at how to compare R and SAS models within SAS Enterprise Miner.
 
+## Understanding the Data
 To start, we’ll use the [adult]( https://archive.ics.uci.edu/ml/machine-learning-databases/adult/) dataset from the UCI machine learning database. This dataset includes information on 32,561 adults taken from a US census database in 1994. There are a number of demographic variables about each person, and a binary target variable indicating if their income was greater than $50K. 
 
 I really like this dataset, because it’s pretty easy to understand even for people who are new to predictive analytics. This is what our dataset looks like: 
