@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Predicting Income using Demographic Data in SAS and R
+title: Predicting Income using Demographics in SAS and R
 subtitle: Open Source Integration in SAS Enterprise Miner
 ---
 
