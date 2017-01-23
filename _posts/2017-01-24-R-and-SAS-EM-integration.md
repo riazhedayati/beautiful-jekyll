@@ -17,10 +17,11 @@ Our target is the variable _income_, where 1 means that an individual had an inc
 
 ## Data Prep
 First, we’ll clean the data. In order to save some time on the data cleaning portion of this exercise, I used [some code from the SDSU Statistical Consulting Group’s website]( http://scg.sdsu.edu/dataset-adult_r/). They have a great post detailing the steps they took in detail, but essentially they:
-* drop a couple variables
+
+- drop a couple variables 
 * bin similar responses within variables
-* drop observations with missing values 
-* change variable classes to factors
+<li> drop observations with missing values </li>
+- change variable classes to factors
 
 ## Building Models in R
 Now that the data is clean, we’ll split it into training (70%) and validation (30%) datasets. We will build a decision tree, a logistic regression, and a random forest in R using our training data. 
@@ -103,6 +104,7 @@ Before we investigate the results of the Model Comparison node, let’s add in t
 Unfortunately we can’t just copy our R code directly into in the Open Source node; we have to change some of the hard-coded variables we wrote in R into macro variables that Enterprise Miner can understand. For the R decision tree, our model looked like this:
 <center><img src="/img/adultincome/Rtreemodelcode.JPG" alt="x" style="width: 80%; height: 80%"></center>
 
+### Changing Macro Variables
 The Enterprise Miner code node requires macro variables for the model name, variable names, and dataset name. We will change the model name from _tree_model_ to the SAS macro variable _&EMR_MODEL_. Likewise, we will change our target _income_ to _&EMR_CLASS_TARGET_, and our dataset name from _train_ to _&EMR_IMPORT_DATA_. 
 
 Finally, the dependent variables are grouped into categorical or numeric variables: _&EMR_NUM_INPUT_ in SAS encompasses the numeric variables _age_ and _hr_per_week_, while _&EMR_CLASS_INPUT_ encompasses the rest of the dependent variables which are all categorical. 
@@ -124,14 +126,12 @@ Now that we have each of our three SAS models and our three R models, we will co
 ## Model Comparison
 Checking the results of the Model Comparison node, we have several charts and tables. The two most interesting are the ROC charts and the fit statistics table. 
 
-Looking at the ROC curves for the training data, it appears that the Random Forest in R has a measurably higher [AUC]() than the other models. Interestingly though, this does not hold true for the validation data, implying that the R random forest implementation is overfitting the training data.
-
 ### ROC Curves
+Looking at the ROC curves for the training data, it appears that the Random Forest in R has a measurably higher [AUC]() than the other models. Interestingly though, this does not hold true for the validation data, implying that the R random forest implementation is overfitting the training data.
 <center><img src="/img/adultincome/R_EM_ROC.JPG" alt="x" style="width: 100%; height: 100%"></center> 
 
-The fit statistics table provides a number of ways by which to measure model performance. As we have selected validation misclassification rate as the decision metric of choice, it appears that the SAS Forest is the best performing model, with a misclassification rate of under 15.1%. 
-
 ### Fit Statistics
+The fit statistics table provides a number of ways by which to measure model performance. As we have selected validation misclassification rate as the decision metric of choice, it appears that the SAS Forest is the best performing model, with a misclassification rate of under 15.1%. 
 <center><img src="/img/adultincome/R_EM_FitStatistics.JPG" alt="x" style="width: 80%; height: 80%"></center> 
 
 ## Summary
