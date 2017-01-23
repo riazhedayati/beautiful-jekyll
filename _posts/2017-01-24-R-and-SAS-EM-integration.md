@@ -19,8 +19,8 @@ Our target is the variable _income_, where 1 means that an individual had an inc
 First, we’ll clean the data. In order to save some time on the data cleaning portion of this exercise, I used [some code from the SDSU Statistical Consulting Group’s website]( http://scg.sdsu.edu/dataset-adult_r/). They have a great post detailing the steps they took in detail, but essentially they:
 
 - drop a couple variables 
-* bin similar responses within variables
-<li> drop observations with missing values </li>
+- bin similar responses within variables
+- drop observations with missing values
 - change variable classes to factors
 
 ## Building Models in R
