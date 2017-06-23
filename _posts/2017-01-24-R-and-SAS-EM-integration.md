@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Predicting Income using Demographics in SAS and R
-subtitle: Open Source Integration in SAS Enterprise Miner
+title: Using R from within SAS Enterprise Miner
+subtitle: Predicting income using demographic variables
 ---
 
 Today we’re going to look at how to compare R and SAS models within SAS Enterprise Miner.
