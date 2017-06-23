@@ -39,12 +39,12 @@ In English, it looks more like this
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC5.png" /></div>
 
 
-To calculate these values, let’s look at our example again. The probability (Bananas ==> Apples), is equal to ^1/_3. Bananas in a previous order imply apples in a subsequent order 1 time (green arrow), while bananas appear in 3 total orders excluding the last order (blue circles).
+To calculate these values, let’s look at our example again. The probability (Bananas ==> Apples), is equal to \frac{1}{3}. Bananas in a previous order imply apples in a subsequent order 1 time (green arrow), while bananas appear in 3 total orders excluding the last order (blue circles).
 
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC6.png" /></div>
 
 
-As another example, the probability (Apples ==> Carrots), is equal to ^2/_2, aka 1. Apples in a previous order imply carrots in a subsequent order 2 times, while apples appear in 2 total orders (excluding the last order). 
+As another example, the probability (Apples ==> Carrots), is equal to \frac{2}{2}, aka 1. Apples in a previous order imply carrots in a subsequent order 2 times, while apples appear in 2 total orders (excluding the last order). 
 
 Another way to think about this is that every time an apple is purchased, a carrot is purchased in the next order.
 
