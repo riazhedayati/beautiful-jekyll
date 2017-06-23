@@ -4,7 +4,7 @@ title: What’s in your shopping cart tomorrow?
 subtitle: Next basket prediction using Personalized Markov Chains
 ---
 
-[Instacart](https://www.instacart.com/) is a grocery delivery service, who open sourced an (interesting dataset)[https://www.instacart.com/datasets/grocery-shopping-2017] of about 3 million orders, including nearly 50,000 unique products ordered by over 200,000 users. This dataset has many potential applications, but in this post I am going to focus on next basket prediction. Essentially, if we can accurately use a person’s order history to predict what products will be in their next order, then surface those products to the user’s homepage or another convenient location, we are likely to increase conversion rates.
+[Instacart](https://www.instacart.com/) is a grocery delivery service, who open sourced an [interesting dataset](https://www.instacart.com/datasets/grocery-shopping-2017) of about 3 million orders, including nearly 50,000 unique products ordered by over 200,000 users. This dataset has many potential applications, but in this post I am going to focus on next basket prediction. Essentially, if we can accurately use a person’s order history to predict what products will be in their next order, then surface those products to the user’s homepage or another convenient location, we are likely to increase conversion rates.
 
 After doing some research on the topic, I found [several]() [white]() [papers]() which detail various methods of determining the most likely products in a subsequent order. However, when I started looking for R packages to help answer questions like these, there was really nothing available. Given this, I decided to write my own implementation of next basket recommendation.
 
