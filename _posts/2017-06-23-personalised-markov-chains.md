@@ -27,7 +27,7 @@ Our blank transition matrix looks like this:
 
 Using our example above, cell [1,1] in our transition matrix is the probability that apples in a basket implies apples in the next basket. Cell [2,1] is the probability that bananas in a basket implies apples in the next basket. Finally, cell [1,3] is the probability that apples in a basket implies carrots in the next basket, and so forth. 
 
-<div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC3.png" /></div>
+<div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC3.jpg" /></div>
 
 ### Calculating a transition matrix
 Mathematically, the formula to calculate each cell looks like this:
