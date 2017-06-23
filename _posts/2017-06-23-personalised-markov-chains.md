@@ -15,7 +15,7 @@ I based my implementation on the idea of personalized markov chains proposed in 
 ## A simple example
 Let’s take for example one person who has made four orders, and has purchased three different products: apples, bananas, and carrots. Here is a table of their orders. Our goal is to predict which products will be in order 5.
 
-<center><img src="img/personalized-markov-chains/PMC1.jpg" alt="x" style="width: 80%; height: 80%"></center>
+<center><img src="https://github.com/riazhedayati/riazhedayati.github.io/blob/master/img/personalized-markov-chains/PMC1.jpg" alt="x" style="width: 80%; height: 80%"></center>
 
 Rendle’s method essentially takes each order in sequence, looking at the products purchased in an order and their relationship to the products purchased in the previous order. By doing this across all orders for an individual user, we can create a transition matrix calculating the likelihood of purchase of each product, given the products in the previous basket. 
 
