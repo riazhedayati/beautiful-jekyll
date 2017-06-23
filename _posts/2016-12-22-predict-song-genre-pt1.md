@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Predicting Song Genre using Lyrics (part 1)
+title: Can a song's lyrics predict it's genre? (part 1)
 subtitle: Data collection using Python
 ---
 
