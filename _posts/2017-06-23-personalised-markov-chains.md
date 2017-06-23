@@ -8,7 +8,7 @@ subtitle: Next basket prediction using Personalized Markov Chains
 
 This dataset has many potential applications, but in this post I am going to focus on next basket prediction. Essentially, if we can accurately use a person’s order history to predict what products will be in their next order, then surface those products to the user’s homepage or another convenient location, we are likely to increase conversion rates.
 
-After doing some research on the topic, I [found](https://github.com/riazhedayati/PMC/blob/master/white%20papers/Dynamic%20Recurrent%20Model%20for%20Next%20Basket.pdf) [several](https://github.com/riazhedayati/PMC/blob/master/white%20papers/Learning%20Hierarchical%20Representation%20Model%20for%20Next.pdf) [white](https://github.com/riazhedayati/PMC/blob/master/white%20papers/Next%20Basket%20Prediction%20using%20Recurring.pdf) [papers](https://github.com/riazhedayati/PMC/blob/master/white%20papers/Next%20Basket%20Prediction%20using%20Recurring.pdf) which detail various methods of determining the most likely products in a subsequent order. However, when I started looking for R packages to help answer questions like these, there was really nothing available. Given this, I decided to write my own implementation of next basket recommendation.
+After doing some research on the topic, I [found](https://github.com/riazhedayati/PMC/blob/master/white%20papers/Dynamic%20Recurrent%20Model%20for%20Next%20Basket.pdf) [several](https://github.com/riazhedayati/PMC/blob/master/white%20papers/Learning%20Hierarchical%20Representation%20Model%20for%20Next.pdf) [white](https://github.com/riazhedayati/PMC/blob/master/white%20papers/Next%20Basket%20Prediction%20using%20Recurring.pdf) [papers](https://github.com/riazhedayati/PMC/blob/master/white%20papers/Where%20You%20Like%20to%20Go%20Next%20Successive%20Point-of-Interest%20Recommendation.pdf) which detail various methods of determining the most likely products in a subsequent order. However, when I started looking for R packages to help answer questions like these, there was really nothing available. Given this, I decided to write my own implementation of next basket recommendation.
 
 I based my implementation on the idea of personalized markov chains proposed in [this](https://github.com/riazhedayati/PMC/blob/master/white%20papers/Factorizing%20Personalized%20Markov%20Chains.pdf) paper by Steffen Rendle. Not only did it seem like the seminal paper on the subject, but it was also one of the most explicit in terms of discussing the methodology in a step by step manner. 
 
@@ -17,7 +17,9 @@ Let’s take for example one person who has made four orders, and has purchased 
 
 ![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
 
-Rendle’s method essentially takes each order in sequence, looking at the products purchased in an order and their relationship to the products purchased in the previous order. By doing this across all orders for an individual user, we can create a transition matrix calculating the likelihood of purchase of each product, given the products in the previous basket. Our blank transition matrix looks like this:
+Rendle’s method essentially takes each order in sequence, looking at the products purchased in an order and their relationship to the products purchased in the previous order. By doing this across all orders for an individual user, we can create a transition matrix calculating the likelihood of purchase of each product, given the products in the previous basket. 
+
+Our blank transition matrix looks like this:
 
 ![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
 
@@ -41,7 +43,7 @@ To calculate these values, let’s look at our example again. Cell [2,1], or the
 ![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
 
 
-As another example, cell [1,3], or the probability (Apples ==> Carrots), is equal to 2/2. Apples in a previous order imply carrots in a subsequent order 2 times, while apples appear in 2 total orders (excluding the last order). Another way to think about this is that every time an apple appears, carrots appear in a subsequent order.
+As another example, cell [1,3], or the probability (Apples ==> Carrots), is equal to 2/2. Apples in a previous order imply carrots in a subsequent order 2 times, while apples appear in 2 total orders (excluding the last order). Another way to think about this is that every time an apple is purchased, a carrot is purchased in the next order.
 
 
 ![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
@@ -61,19 +63,19 @@ Applying the probabilities from the transition matrix, to order 4, we get the fo
 ## Testing the results
 Now that we’ve gone through a simple example to understand how to use Rendle’s concept of personalized markov chains to predict products in a next basket, let’s apply it to the real data that instacart has released. While the instacart dataset includes order history for over 200,000 customers, we will just take a sample of 3200 customers to test the effectiveness of our personalized markov chain model. 
 
-We can calculate the effectiveness of our model using an [F1 score](https://en.wikipedia.org/wiki/F1_score), which ranges from 0 to 1. As an interpretation, we can think of an F1 score of 0.5 as the ability to predict the items in the next order with 50% accuracy. 
+We can calculate the effectiveness of our model using an [F1 score](https://en.wikipedia.org/wiki/F1_score), which ranges from 0 to 1. We can interpret an F1 score of 0.5 as the ability to predict the items in the next order with 50% accuracy. 
 
 ### Establishing a baseline
 Before we test our model, we should establish a simple baseline that we are looking to beat. To create a simple baseline for this problem, we can use the most recent order as the predicted next order. For instance, if someone purchased carrots, kiwis, and milk in their most recent order, our simple model would predict that they will purchase carrots, kiwis, and milk in their next order too. 
 
-Running this ‘most recent order’ model on the sample of 3200 customers, we calculate an average F1 score of 0.2668645.
+Running this ‘most recent order’ model on the sample of 3200 customers, we calculate an average F1 score of _0.2668645_.
 
 ### Comparing the Personalized Markov Chain model
-The outputs of our Personalized Markov Chains are the probabilities that a user will purchase each product in their next order, given their last order. However, we are trying to determine what products will be in someone’s cart, not just the probability that they will be in the cart. Therefore we also need to determine how many products we think will be purchased in a person’s next order. While there are more sophisticated techniques we could use to determine this, we will simply take the average number of products purchased across a user’s order history as our guess.
+The outputs of our Personalized Markov Chains are the probabilities that a user will purchase each product in their next order, given their last order. However, we are trying to determine what products will be in someone’s cart, not just the probability that they will be in the cart. Therefore we also need to determine how many products we think will be purchased in a person’s next order. For now we will simply take the average number of products purchased across a user’s order history as our guess.
 
-Using our Personalized markov chain model on our sample of 3200 customers, we have an average F1 score of 0.2672749. 
+Using our Personalized markov chain model on our sample of 3200 customers, we have an average F1 score of _0.2672749_. 
 
-While the Personalized Markov Chain model does perform slightly better than the simple most recent order model, the effect is miniscule. The Personalized Markov Chain model is only 0.15% more accurate than the baseline model.
+While the Personalized Markov Chain model does perform slightly better than the simple most recent order model, the effect is miniscule. The Personalized Markov Chain model is __only 0.15%__ more accurate than the baseline model.
  
 ## Final thoughts
 While it was worth a try, it seems that Personalized Markov chains only provides a slight boost in accuracy over a naïve model given this dataset. Theoretically the model will perform better in situations where there are almost cyclical/seasonal patterns of repeated buying. 
