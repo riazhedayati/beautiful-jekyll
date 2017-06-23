@@ -15,32 +15,33 @@ I based my implementation on the idea of personalized markov chains proposed in 
 ## A simple example
 Let’s take for example one person who has made four orders, and has purchased three different products: apples, bananas, and carrots. Here is a table of their orders. Our goal is to predict which products will be in order 5.
 
-<center><img src="https://github.com/riazhedayati/riazhedayati.github.io/blob/master/img/personalized-markov-chains/PMC1.jpg" alt="x" style="width: 80%; height: 80%"></center>
+![Alt text](/img/personalized-markov-chains/PMC1.png)
+
 
 Rendle’s method essentially takes each order in sequence, looking at the products purchased in an order and their relationship to the products purchased in the previous order. By doing this across all orders for an individual user, we can create a transition matrix calculating the likelihood of purchase of each product, given the products in the previous basket. 
 
 Our blank transition matrix looks like this:
 
-<center><img src="https://github.com/riazhedayati/riazhedayati.github.io/blob/master/img/personalized-markov-chains/PMC2.png" style="width: 80%; height: 80%"></center>
+![Alt text](/img/personalized-markov-chains/PMC2.png)
+
 
 Using our example above, cell [1,1] in our transition matrix is the probability that apples in a basket implies apples in the next basket. Cell [2,1] is the probability that bananas in a basket implies apples in the next basket. Finally, cell [1,3] is the probability that apples in a basket implies carrots in the next basket, and so forth. 
 
-<center><img src="img/personalized-markov-chains/PMC3.png" alt="x" style="width: 80%; height: 80%"></center>
+![Alt text](/img/personalized-markov-chains/PMC3.png)
 
 ### Calculating a transition matrix
 Mathematically, the formula to calculate each cell looks like this:
 
-<center><img src="img/personalized-markov-chains/PMC4.png" alt="x" style="width: 80%; height: 80%"></center>
-
+![Alt text](/img/personalized-markov-chains/PMC4.png)
 
 In English, it looks more like this
 
-<center><img src="img/personalized-markov-chains/PMC5.png" alt="x" style="width: 80%; height: 80%"></center>
+![Alt text](/img/personalized-markov-chains/PMC5.png)
 
 
 To calculate these values, let’s look at our example again. Cell [2,1], or the probability (Bananas ==> Apples), is equal to 1/3. Bananas in a previous order imply apples in a subsequent order 1 time (green arrow), while bananas appear in 3 total orders excluding the last order (blue circles).
 
-<center>![Alt text](/img/personalized-markov-chains/PMC6.png)</center>
+![Alt text](/img/personalized-markov-chains/PMC6.png)
 
 
 
@@ -51,7 +52,7 @@ As another example, cell [1,3], or the probability (Apples ==> Carrots), is equa
 
 Given that we now know how to calculate the transition matrix, we can calculate the rest of the cells:
 
-<center><img src="img/personalized-markov-chains/PMC8.png" alt="x" style="width: 80%; height: 80%"></center>
+![Alt text](/img/personalized-markov-chains/PMC8.png)
 
 ### Making Predictions
 Once we have our transition matrix, we can apply those probabilities to our most recent basket, in an attempt to predict the likelihood of each product in our next order. The table below shows our most recent order from our example, along with the next order which we are trying to predict. 
