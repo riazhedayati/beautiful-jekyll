@@ -15,50 +15,50 @@ I based my implementation on the idea of personalized markov chains proposed in 
 ## A simple example
 Let’s take for example one person who has made four orders, and has purchased three different products: apples, bananas, and carrots. Here is a table of their orders. Our goal is to predict which products will be in order 5.
 
-![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
+<center><img src="img/personalized-markov-chains/PMC1.png" alt="x" style="width: 80%; height: 80%"></center>
 
 Rendle’s method essentially takes each order in sequence, looking at the products purchased in an order and their relationship to the products purchased in the previous order. By doing this across all orders for an individual user, we can create a transition matrix calculating the likelihood of purchase of each product, given the products in the previous basket. 
 
 Our blank transition matrix looks like this:
 
-![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
+<center><img src="img/personalized-markov-chains/PMC2.png" alt="x" style="width: 80%; height: 80%"></center>
 
 Using our example above, cell [1,1] in our transition matrix is the probability that apples in a basket implies apples in the next basket. Cell [2,1] is the probability that bananas in a basket implies apples in the next basket. Finally, cell [1,3] is the probability that apples in a basket implies carrots in the next basket, and so forth. 
 
-![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
+<center><img src="img/personalized-markov-chains/PMC3.png" alt="x" style="width: 80%; height: 80%"></center>
 
 ### Calculating a transition matrix
 Mathematically, the formula to calculate each cell looks like this:
 
-![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
+<center><img src="img/personalized-markov-chains/PMC4.png" alt="x" style="width: 80%; height: 80%"></center>
 
 
 In English, it looks more like this
 
-![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
+<center><img src="img/personalized-markov-chains/PMC5.png" alt="x" style="width: 80%; height: 80%"></center>
 
 
 To calculate these values, let’s look at our example again. Cell [2,1], or the probability (Bananas ==> Apples), is equal to 1/3. Bananas in a previous order imply apples in a subsequent order 1 time (green arrow), while bananas appear in 3 total orders excluding the last order (blue circles).
 
-![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
+<center><img src="img/personalized-markov-chains/PMC6.png" alt="x" style="width: 80%; height: 80%"></center>
 
 
 As another example, cell [1,3], or the probability (Apples ==> Carrots), is equal to 2/2. Apples in a previous order imply carrots in a subsequent order 2 times, while apples appear in 2 total orders (excluding the last order). Another way to think about this is that every time an apple is purchased, a carrot is purchased in the next order.
 
 
-![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
+<center><img src="img/personalized-markov-chains/PMC7.png" alt="x" style="width: 80%; height: 80%"></center>
 
 Given that we now know how to calculate the transition matrix, we can calculate the rest of the cells:
 
-![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
+<center><img src="img/personalized-markov-chains/PMC8.png" alt="x" style="width: 80%; height: 80%"></center>
 
 ### Making Predictions
 Once we have our transition matrix, we can apply those probabilities to our most recent basket, in an attempt to predict the likelihood of each product in our next order. The table below shows our most recent order from our example, along with the next order which we are trying to predict. 
 
-![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
+<center><img src="img/personalized-markov-chains/PMC9.png" alt="x" style="width: 80%; height: 80%"></center>
 
 Applying the probabilities from the transition matrix, to order 4, we get the following probabilities for each product in order 5: 
-![alt text](/img/songlyrics/wordcountbygenre.jpeg "Average Wordcount by Genre")
+<center><img src="img/personalized-markov-chains/PMC10.png" alt="x" style="width: 80%; height: 80%"></center>
 
 ## Testing the results
 Now that we’ve gone through a simple example to understand how to use Rendle’s concept of personalized markov chains to predict products in a next basket, let’s apply it to the real data that instacart has released. While the instacart dataset includes order history for over 200,000 customers, we will just take a sample of 3200 customers to test the effectiveness of our personalized markov chain model. 
