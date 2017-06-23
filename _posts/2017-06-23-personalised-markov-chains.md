@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What’s in your shopping cart tomorrow?
+title: What’s for dinner tomorrow?
 subtitle: Next basket prediction using Personalized Markov Chains
 ---
 
@@ -46,7 +46,7 @@ To calculate these values, let’s look at our example again. Cell [2,1], or the
 As another example, cell [1,3], or the probability (Apples ==> Carrots), is equal to 2/2. Apples in a previous order imply carrots in a subsequent order 2 times, while apples appear in 2 total orders (excluding the last order). Another way to think about this is that every time an apple is purchased, a carrot is purchased in the next order.
 
 
-<center><img src="img/personalized-markov-chains/PMC7.png" alt="x" style="width: 80%; height: 80%"></center>
+![Alt text](/img/img/personalized-markov-chains/PMC7.png "Data Snapshot")
 
 Given that we now know how to calculate the transition matrix, we can calculate the rest of the cells:
 
