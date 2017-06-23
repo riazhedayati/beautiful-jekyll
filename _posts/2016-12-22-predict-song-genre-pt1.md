@@ -16,7 +16,7 @@ Now that we have a data source, we need to actually capture that data. There wer
 
 To create the dataset, I wrote a small python program using the [beautiful soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) library to scrape the songinfo, lyrics, and genre for each of the 600 songs. Beautiful Soup is a handy library that will allow you to easily parse HTML tags on websites, allowing you to more easily capture the information you want.
 
-## Scraping the website
+### Web Scraping with Beautiful Soup
 First, I imported the relevant libraries and created 3 empty vectors, one for each column of desired data to be stored. I also created a list containing 6 urls, one for each of the genres.
 
 <pre><code class="language-python line-numbers">from bs4 import BeautifulSoup
