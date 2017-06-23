@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Predicting Song Genre using Lyrics (part 2)
+title: Can a song's lyrics predict it's genre? (part 2)
 subtitle: Cleaning and Exploration in R
 ---
 
