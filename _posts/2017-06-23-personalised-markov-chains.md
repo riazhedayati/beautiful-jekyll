@@ -25,7 +25,7 @@ Our blank transition matrix looks like this:
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC2.png" /></div>
 
 
-Using our example above, cell [1,1] in our transition matrix is the probability that apples in a basket implies apples in the next basket. Cell [2,1] is the probability that bananas in a basket implies apples in the next basket. Finally, cell [1,3] is the probability that apples in a basket implies carrots in the next basket, and so forth. 
+Using our example above, cell [2,1] in the transition matrix is the probability that bananas in a basket implies apples in the next basket. Similarly, cell [1,3] is the probability that apples in a basket implies carrots in the next basket, and so forth. 
 
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC3.jpg" /></div>
 
@@ -39,12 +39,14 @@ In English, it looks more like this
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC5.png" /></div>
 
 
-To calculate these values, let’s look at our example again. Cell [2,1], or the probability (Bananas ==> Apples), is equal to 1/3. Bananas in a previous order imply apples in a subsequent order 1 time (green arrow), while bananas appear in 3 total orders excluding the last order (blue circles).
+To calculate these values, let’s look at our example again. The probability (Bananas ==> Apples), is equal to ^1/_3. Bananas in a previous order imply apples in a subsequent order 1 time (green arrow), while bananas appear in 3 total orders excluding the last order (blue circles).
 
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC6.png" /></div>
 
 
-As another example, cell [1,3], or the probability (Apples ==> Carrots), is equal to 2/2. Apples in a previous order imply carrots in a subsequent order 2 times, while apples appear in 2 total orders (excluding the last order). Another way to think about this is that every time an apple is purchased, a carrot is purchased in the next order.
+As another example, the probability (Apples ==> Carrots), is equal to ^2/_2, aka 1. Apples in a previous order imply carrots in a subsequent order 2 times, while apples appear in 2 total orders (excluding the last order). 
+
+Another way to think about this is that every time an apple is purchased, a carrot is purchased in the next order.
 
 
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC7.png" /></div>
