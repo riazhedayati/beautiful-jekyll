@@ -28,7 +28,7 @@ Our blank transition matrix looks like this:
 Using our example above, cell [2,1] in the transition matrix is the probability that bananas in a basket implies apples in the next basket. Similarly, cell [1,3] is the probability that apples in a basket implies carrots in the next basket, and so forth. 
 
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC3.jpg" /></div>
-<div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC3a.png" /></div>
+
 
 
 ### Calculating a transition matrix
@@ -41,12 +41,12 @@ In English, it looks more like this
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC5.png" /></div>
 
 
-To calculate these values, let’s look at our example again. The probability (Bananas ==> Apples), is equal to \frac{1}{3}. Bananas in a previous order imply apples in a subsequent order 1 time (green arrow), while bananas appear in 3 total orders excluding the last order (blue circles).
+To calculate these values, let’s look at our example again. The probability (Bananas ==> Apples), is equal to 1/3. Bananas in a previous order imply apples in a subsequent order 1 time (green arrow), while bananas appear in 3 total orders excluding the last order (blue circles).
 
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC6.png" /></div>
 
 
-As another example, the probability (Apples ==> Carrots), is equal to $$\frac{2}{2}$$, aka 1. Apples in a previous order imply carrots in a subsequent order 2 times, while apples appear in 2 total orders (excluding the last order). 
+As another example, the probability (Apples ==> Carrots), is equal to 2/2, aka 1. Apples in a previous order imply carrots in a subsequent order 2 times, while apples appear in 2 total orders (excluding the last order). 
 
 Another way to think about this is that every time an apple is purchased, a carrot is purchased in the next order.
 
@@ -57,6 +57,7 @@ Given that we now know how to calculate the transition matrix, we can calculate 
 
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC8.png" /></div>
 
+
 ### Making Predictions
 Once we have our transition matrix, we can apply those probabilities to our most recent basket, in an attempt to predict the likelihood of each product in our next order. The table below shows our most recent order from our example, along with the next order which we are trying to predict. 
 
@@ -66,15 +67,18 @@ Applying the probabilities from the transition matrix, to order 4, we get the fo
 
 <div style="text-align:center"><img src ="/img/personalized-markov-chains/PMC10.png" /></div>
 
+
 ## Testing the results
 Now that we’ve gone through a simple example to understand how to use Rendle’s concept of personalized markov chains to predict products in a next basket, let’s apply it to the real data that instacart has released. While the instacart dataset includes order history for over 200,000 customers, we will just take a sample of 3200 customers to test the effectiveness of our personalized markov chain model. 
 
 We can calculate the effectiveness of our model using an [F1 score](https://en.wikipedia.org/wiki/F1_score), which ranges from 0 to 1. We can interpret an F1 score of 0.5 as the ability to predict the items in the next order with 50% accuracy. 
 
+
 ### Establishing a baseline
 Before we test our model, we should establish a simple baseline that we are looking to beat. To create a simple baseline for this problem, we can use the most recent order as the predicted next order. For instance, if someone purchased carrots, kiwis, and milk in their most recent order, our simple model would predict that they will purchase carrots, kiwis, and milk in their next order too. 
 
 Running this ‘most recent order’ model on the sample of 3200 customers, we calculate an average F1 score of _0.2668645_.
+
 
 ### Comparing the Personalized Markov Chain model
 The outputs of our Personalized Markov Chains are the probabilities that a user will purchase each product in their next order, given their last order. However, we are trying to determine what products will be in someone’s cart, not just the probability that they will be in the cart. Therefore we also need to determine how many products we think will be purchased in a person’s next order. For now we will simply take the average number of products purchased across a user’s order history as our guess.
@@ -82,6 +86,7 @@ The outputs of our Personalized Markov Chains are the probabilities that a user 
 Using our Personalized markov chain model on our sample of 3200 customers, we have an average F1 score of _0.2672749_. 
 
 While the Personalized Markov Chain model does perform slightly better than the simple most recent order model, the effect is miniscule. The Personalized Markov Chain model is __only 0.15%__ more accurate than the baseline model.
+ 
  
 ## Final thoughts
 While it was worth a try, it seems that Personalized Markov chains only provides a slight boost in accuracy over a naïve model given this dataset. Theoretically the model will perform better in situations where there are almost cyclical/seasonal patterns of repeated buying. 
