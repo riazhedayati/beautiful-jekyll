@@ -21,7 +21,7 @@ Rendle’s method essentially takes each order in sequence, looking at the produ
 
 Our blank transition matrix looks like this:
 
-<center><img src="img/personalized-markov-chains/PMC2.png" alt="x" style="width: 80%; height: 80%"></center>
+<center><img src="https://github.com/riazhedayati/riazhedayati.github.io/blob/master/img/personalized-markov-chains/PMC2.png" style="width: 80%; height: 80%"></center>
 
 Using our example above, cell [1,1] in our transition matrix is the probability that apples in a basket implies apples in the next basket. Cell [2,1] is the probability that bananas in a basket implies apples in the next basket. Finally, cell [1,3] is the probability that apples in a basket implies carrots in the next basket, and so forth. 
 
