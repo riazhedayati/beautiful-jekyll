@@ -89,9 +89,9 @@ While the Personalized Markov Chain model does perform slightly better than the 
  
  
 ## Final thoughts
-While it was worth a try, it seems that Personalized Markov chains only provides a slight boost in accuracy over a naïve model given this dataset. Theoretically the model should perform better in situations where there are almost cyclical or seasonal patterns of repeated buying, which is not the case here. 
+While it was worth a try, it seems that Personalized Markov chains only provides a slight boost in accuracy over a naïve model given this dataset. Theoretically the model should perform better in situations where there are cyclical or seasonal patterns of repeated buying, which is not the case here. 
 
-Thinking about how I shop for groceries, this outcome makes sense; what I am likely to purchase on my next shopping trip is not necessarily related to what I purchased during my most recent shopping trip. 
+Thinking about how I shop for groceries, this outcome makes sense: what I am likely to purchase on my next shopping trip is not necessarily related to what I purchased during my most recent shopping trip. 
 
 If I made Italian food last night and am making Mexican food tonight, that doesn’t mean that every time I make Italian food I will make Mexican food the following night. 
 
