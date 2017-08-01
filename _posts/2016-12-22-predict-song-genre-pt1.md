@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Can a song's lyrics predict it's genre? (part 1)
-subtitle: Data collection using Python
+title: Can a song's lyrics predict it's genre?
+subtitle: Web scraping with Beautiful Soup in Python
 ---
 
-We've all heard the saying "don't judge a book by it's cover." Today we'll try to see if the same holds true for music: Can we just a song's genre by it's lyrics?
+We've all heard the saying "don't judge a book by it's cover." Today we'll try to see if the same holds true for music: Can we judge a song's genre by it's lyrics?
 
 ## Defining our target
 If we’re going to try to predict a song’s genre using its lyrics, one big issue to think about first is the subjective nature of our target variable, _genre_. For example, is Taylor Swift a pop artist, or a country singer? Similarly, are _Alternative_ and _Heavy Metal_ separate genres, or can you just classify both as just _Rock_?  Classifying a song within a genre is a subjective exercise.
