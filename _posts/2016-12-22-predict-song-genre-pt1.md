@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Can a song's lyrics predict it's genre?
+title: Can a song's lyrics predict it's genre? (part 1)
 subtitle: Web scraping with Beautiful Soup in Python
 ---
 
