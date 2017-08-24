@@ -117,7 +117,7 @@ dtm #6762 unique terms
 
 # Remove sparse terms
 dtm <- removeSparseTerms(dtm, 0.98)
-dtm #785 terms remain, with sparcity of 93%
+dtm #785 terms remain
 </code></pre>
 
 
