@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Did my flight just get cheaper?
-subtitle: Monitoring Southwest flight prices with RSelenium and rvest
+subtitle: Monitoring Southwest Airlines flight prices with RSelenium and Rvest
 ---
 
 I am a fairly frequent flyer, and my preferred airline is [Southwest](www.southwest.com). I love that their trips are booked in one-way segments, their open seating system, that I can check two bags for free, and most importantly, that I can change or cancel my flights at any time without penalty.
@@ -18,7 +18,7 @@ There are four major steps that we will go through below in more detail:
   <li> Send an email alert using [mailR]() if the price has decreased</li>
 </ol>
 
-## Define our initial purchase
+## Defining our initial purchase
 For the code below we will use a simple example and track just one flight. Let’s say I purchased a flight from Raleigh to Portland on 12/09 for $204, leaving at 7:15am and arriving at 12:00pm.
 ```
 #define current flight info
@@ -73,7 +73,7 @@ Sys.sleep(5)
 Before we run our command to ‘search’ our booking window on the frontpage looks like this:
 ![alt text](/img/southwest/flight_input.jpg "Flight Booking Input")
 
-##Scraping Flight Schedules
+## Scraping Flight Schedules
 Now that we have navigated to the day and airports that match our purchased ticket, we can take the information and create a data frame of the information in R. This is the flight schedule for that day:
 ![alt text](/img/southwest/flight_schedule2.jpg "Flight Schedule")
 
@@ -173,7 +173,7 @@ ifelse(purchased_price > current_lowest_price,
 The current lowest price for our flight is $135, which is lower than our purchased flight price of $204. Let’s check our email!
 ![alt text](/img/southwest/email_alert.jpg "Email Alert – It worked!!")
 
-## Schedule the script to run daily
+## Scheduling the Script
 As a final step, we want our script to check for prices daily. To do this, we can leverage the [taskscheduleR]() package, and the associated addon to RStudio. Using the GUI we decide which script to use and how often we want it to run. 
 
 ![alt text](/img/southwest/taskscheduleR.jpg "Schedule script to run daily")
