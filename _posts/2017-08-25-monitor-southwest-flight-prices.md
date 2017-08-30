@@ -8,20 +8,30 @@ I am a fairly frequent flyer, and my preferred airline is [Southwest](http://www
 
 Changing flights without penalty means that I can book a trip, and if that trip becomes cheaper at any time, I can cancel my previous flight and rebook the same flight, and pocket the difference. However, Southwest does not provide an alert that lets you know when a price has dropped – you must check this manually.
 
+
 ## Automating the price check
 In order to make sure I get the cheapest prices for all my Southwest flights, I created an R script to automatically check the flight prices for flights I have purchased. If a lower price is available, I receive an email with the flight info and my potential savings.
 
 There are four major steps that we will go through below in more detail:
-<ol><li value="1"> Open a web browser, and drive the browser using R via [RSelenium](https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf). </li>
-  <li> Scrape the flight schedule using [rvest](https://cran.r-project.org/web/packages/rvest/rvest.pdf). </li>
-  <li> Parse the resulting table using [dplyr](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf) and [stringr](https://cran.r-project.org/web/packages/stringr/stringr.pdf) to check for price changes. </li>
-  <li> Send an email alert using [mailR](https://cran.r-project.org/web/packages/mailR/mailR.pdf) if the price has decreased. </li>
+<ol><li value="1"> Open a web browser, and drive the browser using R via RSelenium</li>
+  <li> Scrape the flight schedule using rvest </li>
+  <li> Parse the resulting table using dplyr and stringr to check for price changes </li>
+  <li> Send an email alert using mailR if the price has decreased </li>
 </ol>
 
-## Defining our initial purchase
-For the code below we will use a simple example and track just one flight. Let’s say I purchased a flight from Raleigh to Portland on 12/09 for $204, leaving at 7:15am and arriving at 12:00pm.
 
-<pre><code class="language-r line-numbers">#define current flight info
+## Defining our initial purchase
+For the code below we will use a simple example and track just one flight. Let’s say I purchased a flight from Raleigh, NC to Portland, OR on 12/09 for $204, departing at 7:15am and arriving at 12:00pm. Let's load the necessary packages and define these as objects in our environment. 
+
+<pre><code class="language-r line-numbers">
+#load packages
+library(RSelenium)
+library(rvest)
+library(tidyverse)
+library(stringr)
+library(mailR)
+
+#define current flight info
 purchased_departure_airport_code <- "RDU"
 purchased_arrival_airport_code <- "PDX"
 purchased_departure_date <- "12/09"
@@ -29,6 +39,7 @@ purchased_departure_time <- "7:15"
 purchased_arrival_time <- "12:00"
 purchased_price <- 204
 </code></pre>
+
 
 ## Driving a web browser programmatically
 Now that we have our details of our previous purchase defined, let’s use RSelenium to input those details in Southwest’s website. First, we have to define our remote driver, which will allow us to control Chrome using R and browse the web via R commands. Then we can navigate to the Southwest homepage.
@@ -42,9 +53,10 @@ remDr$navigate("https://www.southwest.com")
 Sys.sleep(5)
 </code></pre>
 
+### Southwest Homepage
 <div style="text-align:center"><img src ="/img/southwest/southwest_homepage.JPG" /></div>
-![alt text](img/southwest/southwest_homepage.JPG "Southwest Homepage")
 
+### Entering inputs onto a webpage with R
 Let’s now interact with the webpage, entering the flight info for the flight that was already purchased. My favorite way to figure out where on the website to pass each input is by using [selector gadget](http://www.selectorgadget.com) to investigate the website’s CSS.
 
 <pre><code class="language-r line-numbers">#click one-way radiobutton
@@ -72,13 +84,17 @@ search$clickElement()
 Sys.sleep(5)
 </code></pre>
 
-Before we run our command to ‘search’ our booking window on the frontpage looks like this:
+
+Before we run our ‘search’ command the booking window on the frontpage looks like this:
 ![alt text](/img/southwest/flight_input.JPG "Flight Booking Input")
+
 
 ## Scraping Flight Schedules
 Now that we have navigated to the day and airports that match our purchased ticket, we can take the information and create a data frame of the information in R. This is the flight schedule for that day:
+
 ![alt text](/img/southwest/flight_schedule2.JPG "Flight Schedule")
 
+### Parsing the HTML
 Again, we will use selector gadget to identify the elements in the CSS that are important to us. We can use the rvest package to parse the html, and dplyr and stringr to transform the html text into the variables that we want.
 
 <pre><code class="language-r line-numbers">#read page html
@@ -136,7 +152,8 @@ flight_schedule$getaway_price <- southwest_html %>%
 </code></pre>
 
 After reading the html and transforming the resulting output, our final cleaned data frame looks like this:
-![alt text]("/img/southwest/flight_schedule_dataframe.JPG" "Flight Schedule Dataframe")
+![alt text](/img/southwest/flight_schedule_dataframe.JPG "Flight Schedule Dataframe")
+
 
 ## Checking the flight price
 Now that we have our flight schedule in R, we will want to match the flight that we have already purchased and check its price. We will do this by filtering the data frame to only the observation that matches our purchased flight departure and arrival times. Finally, we can take the minimum price for that flight, and store it a separate variable called _current_lowest_price_
@@ -150,6 +167,7 @@ my_flight_schedule <- flight_schedule %>%
 #create variable containing lowest price for previously purchased flight
 current_lowest_price <- my_flight_schedule$low_price
 </code></pre>
+
 
 ## Creating an email alert
 Finally, we’ll set up an email alert, which will send us an email in the event that the prices drops. To send the email alert, we will use the [mailR]() package. We will wrap the sendMail command in an ifelse statement, so that we only receive an email if the current lowest price is lower than the purchased ticket price. 
@@ -174,9 +192,12 @@ ifelse(purchased_price > current_lowest_price,
 </code></pre>
 
 The current lowest price for our flight is $135, which is lower than our purchased flight price of $204. Let’s check our email!
+
 ![alt text](/img/southwest/email_alert.JPG "Email alert successful!!")
 
 ## Scheduling the Script
 As a final step, we want our script to check for prices daily. To do this, we can leverage the [taskscheduleR]() package, and the associated addon to RStudio. Using the GUI we decide which script to use and how often we want it to run. 
 
 ![alt text](/img/southwest/taskscheduleR.JPG "Schedule script to run daily")
+
+We now have a program that can automatically check for cheaper Southwest flight prices without us having to lift a finger.
