@@ -21,7 +21,7 @@ There are four major steps that we will go through below in more detail:
 
 
 ### Defining our initial purchase
-For the code below we will use a simple example and track just one flight. Let’s say I purchased a flight from Raleigh, NC to Portland, OR on December 9th for $204, departing at 7:15am and arriving at 12:00pm. Let's load the necessary packages and define these as objects in our environment. 
+For this post we will use a simple example and track just one flight. Let’s say I purchased a flight from Raleigh, NC to Portland, OR on December 9th for $204, departing at 7:15am and arriving at 12:00pm. First we'll load the necessary packages and define our purchased flight details within our environment. 
 
 <pre><code class="language-r line-numbers">#load packages
 library(RSelenium)
@@ -29,6 +29,7 @@ library(rvest)
 library(tidyverse)
 library(stringr)
 library(mailR)
+library(taskscheduleR)
 
 #define current flight info
 purchased_departure_airport_code <- "RDU"
@@ -84,17 +85,17 @@ Sys.sleep(5)
 </code></pre>
 
 
-Before we run our ‘search’ command, the booking window on the frontpage looks like this:
+Before we run our ‘search’ command the booking window on the frontpage looks like this:
 ![alt text](/img/southwest/flight_input.JPG "Flight Booking Input")
 
 
 ## Scraping Flight Schedules
-Now that we have navigated to the day and airports that match our purchased ticket, we can take the information and create a data frame of the information in R. This is the flight schedule for that day:
+Now that we have navigated to the day and airports that match our purchased ticket, we can use the page's HTML to create a data frame of the flight schedule in R. This is the flight schedule for that day:
 
 ![alt text](/img/southwest/flight_schedule2.JPG "Flight Schedule")
 
 ### Parsing the HTML
-Again, we will use selector gadget to identify the elements in the CSS that are important to us. We can use the rvest package to parse the html, and dplyr and stringr to transform the html text into the variables that we want.
+Again, we will use selector gadget to identify the elements in the CSS that are important to us. We can use the rvest package to parse the HTML, and dplyr and stringr to transform the HTML text into the variables that we want.
 
 <pre><code class="language-r line-numbers">#read page html
 southwest_html <- read_html(remDr$getPageSource()[[1]])
@@ -150,12 +151,13 @@ flight_schedule$getaway_price <- southwest_html %>%
   as.numeric
 </code></pre>
 
-After reading the html and transforming the resulting output, our final cleaned data frame looks like this:
+After pulling the HTML and performing some transforming the resulting data, our final cleaned data frame looks like this:
 ![alt text](/img/southwest/flight_schedule_dataframe.JPG "Flight Schedule Dataframe")
 
 
 ## Checking the flight price
-Now that we have our flight schedule in R, we will want to match the flight that we have already purchased and check its price. We will do this by filtering the data frame to only the observation that matches our purchased flight departure and arrival times. Finally, we can take the minimum price for that flight, and store it a separate variable called _current_lowest_price_
+Now that we have our flight schedule in R, we will want to match the flight that we have already purchased and check its price. We will do this by filtering the data frame to only the observation that matches our purchased flight departure and arrival times. 
+Finally, we can take the minimum price for that flight, and store it a separate variable called _current_lowest_price_.
 
 <pre><code class="language-r line-numbers">#filter flight schedule to look at only previously purchased flight
 my_flight_schedule <- flight_schedule %>% 
@@ -169,7 +171,7 @@ current_lowest_price <- my_flight_schedule$low_price
 
 
 ## Creating an email alert
-Finally, we’ll set up an email alert, which will send us an email in the event that the prices drops. To send the email alert, we will use the [mailR]() package. We will wrap the sendMail command in an ifelse statement, so that we only receive an email if the current lowest price is lower than the purchased ticket price. 
+As the last step, we’ll set up an email alert which will send us an email in the event that the prices drops. To send the email alert, we will use the [mailR]() package. We will wrap the sendMail command in an ifelse statement, so that we only receive an email if the current lowest price is lower than the purchased ticket price. 
 The subject and body of the email can say whatever we want, but I’ve kept it simple for now. Additionally, the _sender_, _recipient_, and _pw_ variables were defined locally. 
 
 <pre><code class="language-r line-numbers">#send email alert if lower price is available
