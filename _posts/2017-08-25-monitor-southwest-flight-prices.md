@@ -6,25 +6,24 @@ subtitle: Monitoring Southwest Airlines flight prices with RSelenium and Rvest
 
 I am a fairly frequent flyer, and my preferred airline is [Southwest](http://www.southwest.com). I love that their trips are booked in one-way segments, their open seating system, that I can check two bags for free, and most importantly, that I can change or cancel my flights at any time without penalty.
 
-Changing flights without penalty means that I can book a trip, and if that trip becomes cheaper at any time, I can cancel my previous flight and rebook the same flight, and pocket the difference. However, Southwest does not provide an alert that lets you know when a price has dropped – you must check this manually.
+Changing flights without penalty means that I can book a trip, and if that trip becomes cheaper at any time, I can cancel my previous flight and rebook the same flight, and pocket the difference. However, Southwest does not provide an alert that lets you know when a price has dropped – you have to check this manually.
 
 
 ## Automating the price check
 In order to make sure I get the cheapest prices for all my Southwest flights, I created an R script to automatically check the flight prices for flights I have purchased. If a lower price is available, I receive an email with the flight info and my potential savings.
 
 There are four major steps that we will go through below in more detail:
-<ol><li value="1"> Open a web browser, and drive the browser using R via RSelenium</li>
-  <li> Scrape the flight schedule using rvest </li>
-  <li> Parse the resulting table using dplyr and stringr to check for price changes </li>
-  <li> Send an email alert using mailR if the price has decreased </li>
+<ol><li value="1">  Open a web browser, and drive the browser using R via RSelenium</li>
+  <li>  Scrape the flight schedule using rvest </li>
+  <li>  Parse the resulting table using dplyr and stringr to check for price changes </li>
+  <li>  Send an email alert using mailR if the price has decreased </li>
 </ol>
 
 
-## Defining our initial purchase
-For the code below we will use a simple example and track just one flight. Let’s say I purchased a flight from Raleigh, NC to Portland, OR on 12/09 for $204, departing at 7:15am and arriving at 12:00pm. Let's load the necessary packages and define these as objects in our environment. 
+### Defining our initial purchase
+For the code below we will use a simple example and track just one flight. Let’s say I purchased a flight from Raleigh, NC to Portland, OR on December 9th for $204, departing at 7:15am and arriving at 12:00pm. Let's load the necessary packages and define these as objects in our environment. 
 
-<pre><code class="language-r line-numbers">
-#load packages
+<pre><code class="language-r line-numbers">#load packages
 library(RSelenium)
 library(rvest)
 library(tidyverse)
@@ -50,13 +49,13 @@ remDr <- rD$client
 
 #navigate to southwest website homepage
 remDr$navigate("https://www.southwest.com")
-Sys.sleep(5)
+Sys.sleep(5) #wait for the page to load
 </code></pre>
 
-### Southwest Homepage
-<div style="text-align:center"><img src ="/img/southwest/southwest_homepage.JPG" /></div>
+![alt text](/img/southwest/southwest_homepage.JPG "Southwest Homepage")
 
-### Entering inputs onto a webpage with R
+
+### Entering inputs onto a webpage
 Let’s now interact with the webpage, entering the flight info for the flight that was already purchased. My favorite way to figure out where on the website to pass each input is by using [selector gadget](http://www.selectorgadget.com) to investigate the website’s CSS.
 
 <pre><code class="language-r line-numbers">#click one-way radiobutton
@@ -85,7 +84,7 @@ Sys.sleep(5)
 </code></pre>
 
 
-Before we run our ‘search’ command the booking window on the frontpage looks like this:
+Before we run our ‘search’ command, the booking window on the frontpage looks like this:
 ![alt text](/img/southwest/flight_input.JPG "Flight Booking Input")
 
 
@@ -200,4 +199,4 @@ As a final step, we want our script to check for prices daily. To do this, we ca
 
 ![alt text](/img/southwest/taskscheduleR.JPG "Schedule script to run daily")
 
-We now have a program that can automatically check for cheaper Southwest flight prices without us having to lift a finger.
+We now have a program that can automatically check for cheaper Southwest flight prices without us having to lift a finger. Happy flying everyone!
