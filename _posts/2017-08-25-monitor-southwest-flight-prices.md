@@ -171,7 +171,7 @@ current_lowest_price <- my_flight_schedule$low_price
 
 
 ## Creating an email alert
-As the last step, we’ll set up an email alert which will send us an email in the event that the prices drops. To send the email alert, we will use the [mailR]() package. We will wrap the sendMail command in an ifelse statement, so that we only receive an email if the current lowest price is lower than the purchased ticket price. 
+Next, we’ll set up an email alert which will send us an email in the event that the prices drops. To send the email alert, we will use the [mailR]() package. We will wrap the sendMail command in an ifelse statement, so that we only receive an email if the current lowest price is lower than the purchased ticket price. 
 The subject and body of the email can say whatever we want, but I’ve kept it simple for now. Additionally, the _sender_, _recipient_, and _pw_ variables were defined locally. 
 
 <pre><code class="language-r line-numbers">#send email alert if lower price is available
