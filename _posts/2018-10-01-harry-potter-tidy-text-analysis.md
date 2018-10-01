@@ -10,7 +10,7 @@ As a young teenager in the early 2000s, I have very fond memories surrounding th
 While I am not as into Harry Potter anymore as I once was, I thought it would still be fun to relive some of that nostalgia and do some [tidy text]( https://www.tidytextmining.com/) analysis of the Harry Potter book series.  
 
 
-### Reading and cleaning the text
+## Reading and cleaning the text
 After some searching, I was able to find .txt versions of all 7 books in the Harry Potter series. Using some ugly loops, I was able to wrangle each of the text files into something a bit more manageable, and capture some metadata about the text along the way. 
 
 <pre><code class="language-r line-numbers">library(tidyverse)
@@ -50,7 +50,7 @@ Here is the first paragraph of the first book in our initial dataset:
 
 ![alt text](/img/HP/HP_not_tidy.JPG "Untidy Data")
 
-## Tidying the data
+### Tidying the data
 Next step was to clean up the dataset. I tidied the data to have one word per row, removed common stopwords that added little value (think _be_ & _this_), and stemmed words to their root form (so that _look_ and _looked_ would be considered the same word). Finally, I did a small cosmetic adjustment to the stemmed words, making them more human readable by replacing each stemmed word with its most common unstemmed version.
 
 <pre><code class="language-r line-numbers">#make dataset tidy, remove common stopwords and stem terms
@@ -83,7 +83,7 @@ Here is the same paragraph from our tidy and clean dataset:
 
 
 
-### What’s the (gg)plot?
+## What’s the (gg)plot?
 To begin our analysis, let’s look at a very simple chart of the top 20 most common words in the entire series:
 
 <pre><code class="language-r line-numbers">#define book colors
@@ -109,7 +109,7 @@ hp_tidy_nostop %>%
 
 Unsurprisingly, the most common words in the series are also the names of the principle characters in the series. The words ‘eyes’ and ‘looked’ are the most frequent non-character words, also not too surprising given J.K. Rowling’s writing style.
 
-## Most common words by book
+### Most common words by book
 What about the most common words by book? This time we will look at term frequency as a percentage of words within each book, as some books in the series are much longer than others: 
 
 <pre><code class="language-r line-numbers">#find total wordcount in each book
@@ -146,7 +146,7 @@ hp_tidy_nostop %>%
 
 Again, we see Harry, Ron, Hermoine, occupying the top spots in each of the books. We do start to see some variation between the books though towards the bottom of the top 10 lists. 
 
-## Unique words by book
+### Unique words by book
 What about the words that makes each book unique? Here we will use a technique called tf-idf, or _term frequency–inverse document frequency_ to identify words which are found most frequently in a single book that are rarely found in the other books. 
 
 <pre><code class="language-r line-numbers">#plot TFIDF unique words by book (facet)
@@ -181,7 +181,7 @@ I like this chart because it really gives a good sense of some of the most impor
 
 
 
-### Sentiment over time
+## Sentiment over time
 
 Another interesting analysis we can do is to look at the sentiment of the words in the book over time to see if we can use those sentiment scores to quantify the ups and downs within a story arc. 
 
