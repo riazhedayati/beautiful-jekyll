@@ -13,7 +13,14 @@ While I am not as into Harry Potter anymore as I once was, I thought it would st
 ### Reading and cleaning the text
 After some searching, I was able to find .txt versions of all 7 books in the Harry Potter series. Using some ugly loops, I was able to wrangle each of the text files into something a bit more manageable, and capture some metadata about the text along the way. 
 
-<pre><code class="language-r line-numbers">#initialize filenames to read in
+<pre><code class="language-r line-numbers">library(tidyverse)
+library(syuzhet)
+library(tidytext)
+library(stringr)
+library(zoo)
+library(SnowballC)
+
+#initialize filenames to read in
 filenames <- list.files("raw text")
 
 #write loop to read in all the books into a list
@@ -41,10 +48,10 @@ for (i in seq_along(filenames)){
 
 Here is the first paragraph of the first book in our initial dataset:
 
-![alt text](/img/HP/HP_not_tidy.JPG "hp_all_books dataset")
+![alt text](/img/HP/HP_not_tidy.JPG "Untidy Data")
 
-
-Next step was to clean up the dataset. I tidied the data to have one word per row, removed common stopwords that added little value (think ‘be’ & ‘this’), and stemmed words to their root form (so that ‘look’ and ‘looked’ would be considered the same word). Finally, I did a small cosmetic adjustment to the stemmed words, making them more human readable by replacing each stemmed word with its most common unstemmed version.
+## Tidying the data
+Next step was to clean up the dataset. I tidied the data to have one word per row, removed common stopwords that added little value (think _be_ & _this_), and stemmed words to their root form (so that _look_ and _looked_ would be considered the same word). Finally, I did a small cosmetic adjustment to the stemmed words, making them more human readable by replacing each stemmed word with its most common unstemmed version.
 
 <pre><code class="language-r line-numbers">#make dataset tidy, remove common stopwords and stem terms
 hp_tidy_nostop_raw <- hp_all_books %>%
@@ -72,7 +79,8 @@ hp_tidy_nostop <- hp_tidy_nostop_raw %>%
 
 Here is the same paragraph from our tidy and clean dataset:
 
-![alt text](/img/HP/HP_tidy.JPG "hp_all_books dataset")
+![alt text](/img/HP/HP_tidy.JPG "Tidy Data")
+
 
 
 ### What’s the (gg)plot?
@@ -97,11 +105,11 @@ hp_tidy_nostop %>%
         x=NULL)
 </code></pre>
 
-![alt text](/img/HP/top20words.jpeg "top 20 words in HP series")
+![alt text](/img/HP/top20words.jpeg "Top 20 words in Harry Potter series")
 
 Unsurprisingly, the most common words in the series are also the names of the principle characters in the series. The words ‘eyes’ and ‘looked’ are the most frequent non-character words, also not too surprising given J.K. Rowling’s writing style.
 
-##Most common words by book
+## Most common words by book
 What about the most common words by book? This time we will look at term frequency as a percentage of words within each book, as some books in the series are much longer than others: 
 
 <pre><code class="language-r line-numbers">#find total wordcount in each book
@@ -134,13 +142,12 @@ hp_tidy_nostop %>%
       fill=NULL)
 </code></pre>
 
-
 ![alt text](/img/HP/term freq by book.jpeg "Most common words in each book")
 
 Again, we see Harry, Ron, Hermoine, occupying the top spots in each of the books. We do start to see some variation between the books though towards the bottom of the top 10 lists. 
 
-##Unique words by book
-What about the words that makes each book unique? Here we will use a technique called tf-idf, or term frequency – inverse document frequency to identify words which are found most frequently in a single book that are rarely found in the other books. 
+## Unique words by book
+What about the words that makes each book unique? Here we will use a technique called tf-idf, or _term frequency–inverse document frequency_ to identify words which are found most frequently in a single book that are rarely found in the other books. 
 
 <pre><code class="language-r line-numbers">#plot TFIDF unique words by book (facet)
 tf_idf <- hp_tidy_nostop %>%
@@ -168,15 +175,17 @@ tf_idf %>%
     fill=NULL)
 </code></pre>
 
-![alt text](/img/HP/tfidf.PNG "TF-IDF")
+![alt text](/img/HP/tfidf.JPG "TF-IDF")
 
 I like this chart because it really gives a good sense of some of the most important characters and events that were unique to each book.
 
 
-###Sentiment over time
+
+### Sentiment over time
 
 Another interesting analysis we can do is to look at the sentiment of the words in the book over time to see if we can use those sentiment scores to quantify the ups and downs within a story arc. 
-In order to do this, we’ll leverage two common sentiment lexicons (AFINN and Bing), which we will match to the words in the Harry Potter series. The AFINN lexicon assigns each word a sentiment score between -5 to 5, while the Bing lexicon simply assigns each word the value of ‘Positive’ or ‘Negative’. Words that are not included in the sentiment lexicons are assumed to be neutral.
+
+In order to do this, we’ll leverage two common sentiment lexicons (AFINN and Bing), which we will match to the words in the Harry Potter series. The AFINN lexicon assigns each word a sentiment score between _-5_ and _5_, while the Bing lexicon simply assigns each word the value of _Positive_ or _Negative_. Words that are not included in the sentiment lexicons are assumed to be neutral.
 <pre><code class="language-r line-numbers">#tidytext sentiment analysis create datasets
 tidy_sent_bing <- hp_tidy_nostop %>% 
   inner_join(get_sentiments("bing")) %>% 
@@ -220,10 +229,10 @@ hp_tidy_sent %>%
 </code></pre>
 
 After assigning sentiment scores to each word, I calculated the page-level sentiment by taking the sum of the scores on each page. Graphing the scores at the page level is messy, but looks like this: 
-![alt text](/img/HP/ page_level_sentiment.JPG "sentiment by page")
+
+![alt text](/img/HP/page_level_sentiment.JPG "Sentiment by Page")
 
 As that chart is not very illustrative of sentiment changes over time, let’s see if we can further analyze the story arc by fitting a more simple curve to this sentiment data. To do this, I used a discrete cosine transformation described by Matthew Jockers using his [syuzhet package]( https://cran.r-project.org/web/packages/syuzhet/vignettes/syuzhet-vignette.html).
-
 <pre><code class="language-r line-numbers">#loops to make tidy dataset for syuzhet analysis
 hp_plot_sentiment <- tibble()
 for (bk in seq_along(filenames)){
@@ -269,4 +278,5 @@ hp_plot_sentiment %>%
 ![alt text](/img/HP/syuzhet.jpeg "Discrete Cosine Transformed Story Arcs")
 
 These simplified sentiment-based plot trajectories are much simpler, and it is interesting to see that both sentiment lexicons lead to similar but not identical plot trajectories. 
+
 However, while interesting and visually appealing, we have no prior baseline for what the plot shape for each of the books should look like. This means that we can’t validate whether or not this curve fitting approach to sentiment is one that leads us to results that make sense. 
