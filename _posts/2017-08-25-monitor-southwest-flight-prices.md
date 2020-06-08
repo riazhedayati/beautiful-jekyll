@@ -4,6 +4,8 @@ title: Did my flight just get cheaper?
 subtitle: Monitoring Southwest Airlines flight prices with RSelenium and Rvest
 ---
 
+*NOTE: Southwest has redesigned their website since I wrote this post. The css likely won't work exactly as listed below, but the basic instructions should hold.*
+
 I am a fairly frequent flyer, and my preferred airline is [Southwest](http://www.southwest.com). I love that their trips are booked in one-way segments, their open seating system, that I can check two bags for free, and most importantly, that I can change or cancel my flights at any time without penalty.
 
 Changing flights without penalty means that I can book a trip, and if that trip becomes cheaper at any time, I can cancel my previous flight and rebook the same flight, and pocket the difference. However, Southwest does not provide an alert that lets you know when a price has dropped – you have to check this manually.
